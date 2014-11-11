@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Hello World | Accagain&#39;s blog</title>
+  <title>《Linux私房菜基础篇》—01 Linux的规则与安装 | Accagain&#39;s blog</title>
   <meta name="author" content="Accagain">
   
   <meta name="description" content="Accagain&#39;s blog">
@@ -11,7 +11,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="Hello World"/>
+  <meta property="og:title" content="《Linux私房菜基础篇》—01 Linux的规则与安装"/>
   <meta property="og:site_name" content="Accagain&#39;s blog"/>
 
   
@@ -54,20 +54,55 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2014-11-10T10:17:13.000Z"><a href="/2014/11/10/hello-world/">11月 10 2014</a></time>
+        <time datetime="2014-11-11T12:54:27.000Z"><a href="/2014/11/11/《Linux私房菜基础篇》—01-Linux的规则与安装/">11月 11 2014</a></time>
       
       
   
-    <h1 class="title">Hello World</h1>
+    <h1 class="title">《Linux私房菜基础篇》—01 Linux的规则与安装</h1>
   
 
     </header>
     <div class="entry">
       
-        <p>hey,you guys !</p>
-<p>glad to meet here !</p>
-<p>enjoy the communications and do better !</p>
-<p>2014.11.10</p>
+        <hr>
+<h3 id="_实习被安排的第一件事是在服务器端部署代码，所以就把鸟哥的私房菜拿出来读一读，顺便回顾下操作系统的知识。这两天把博客搭起来了，就在这上面做做笔记。">　　实习被安排的第一件事是在服务器端部署代码，所以就把鸟哥的私房菜拿出来读一读，顺便回顾下操作系统的知识。这两天把博客搭起来了，就在这上面做做笔记。</h3>
+<ul>
+<li><h2 id="各硬件设备在Linux中的文件名"><code>各硬件设备在Linux中的文件名</code></h2>
+</li>
+</ul>
+<p>在linux系统中，每个设备都被当成一个文件来对待。需要特别留意的是硬盘（IDE，SCSI，USB都一样），每个磁盘驱动器的磁盘分区（partition)不同，其磁盘文件名还会改变。</p>
+<p><img src="http://ww3.sinaimg.cn/large/e6c22e4cjw1em7fp0xwhfj20ek082my0.jpg" alt=""></p>
+<ul>
+<li><h2 id="磁盘分区"><code>磁盘分区</code></h2>
+<p><strong>MBR(Master Boot Record):</strong> 　 主引导分区，可以安装引导加载程序的地方，有446bytes<br><strong>partition table:</strong>　分区表，记录整块硬盘分区的状态，有64bytes</p>
+</li>
+<li><p>所谓的“分区”只是针对那个64bytes的分区表进行设置而已</p>
+</li>
+<li>硬盘默认的分区表仅能写入四组分区信息</li>
+<li>这四组分区信息我们称为主（Primary）或扩展（Extended）分区</li>
+<li>分区的最小单位为柱面（cylinder）</li>
+</ul>
+<p><img src="http://ww3.sinaimg.cn/large/e6c22e4cgw1em7f40r4mbj20ft02uweq.jpg" alt=""><br><img src="http://ww3.sinaimg.cn/large/e6c22e4cjw1em7fk3k1wjj20g00apmxz.jpg" alt=""></p>
+<ul>
+<li><h2 id="开机流程"><code>开机流程</code></h2>
+</li>
+<li><strong>BIOS:</strong>　开机主动执行的韧体（韧体是写入到硬件上的一个软件程序），会认识第一个可开机的设备</li>
+<li><strong>MBR:</strong>　第一个可开机设备的第一个扇区内的主引导分区块，内包含引导加载程序</li>
+<li><strong>引导加载程序(Boot　loader):</strong>　一支可读取内核文件来执行的软件</li>
+<li><strong>内核文件:</strong>　开始操作系统的功能</li>
+</ul>
+<p><strong>boot loader完成的任务</strong></p>
+<ol>
+<li><strong>提供菜单</strong>：用户可以选择不同的开机选项，这也是多重引导的重要功能</li>
+<li><strong>载入内核文件</strong>： 直接指向可开机的程序区段来开始操作系统</li>
+<li><strong>转交其他loader</strong>: 将引导加载功能转交给其他loader负责</li>
+</ol>
+<p><img src="http://ww2.sinaimg.cn/large/e6c22e4cjw1em7g27d7qhj20cv0953z1.jpg" alt=""></p>
+<p><strong>Tips:</strong><br>1.　每个分区都拥有自己的启动扇区(boot sector)<br>2.　图中的系统分区为第一及第二分区<br>3.　实际可开机的内核文件是放置到各分区内的<br>4.　loader只会认识自己的系统分区内的可开机内核文件，以及其他loader而已<br>5.　loader可直接指向或者是间接将管理权转交给另一个管理程序<br><strong>引导加载程序除了可以安装在MBR之外，还可以安装在每个分区的boot sector</strong></p>
+<ul>
+<li><h2 id="重要点"><code>重要点</code></h2>
+1、注销不是关机，只是让你的账号离开系统而已。<br>2、命令行模式登陆后所取得的程序被称为<strong>shell</strong>,这是因为这个程序负责最外层的跟用户通信工作。<br>3、命令行模式里执行命令的两种情况：<br>一种是命令会直接显示结果然后回到命令提示符等待下一个命令的输入<br>一种是进入到该命令的环境，知道结束该命令才回到命令提示符的环境（P121)<br>4、命令不存在三种原因：<br>①　这个指令不存在，因为该软件没有安装。解决方法就是安装该软件；<br>②　这个指令所在的目录目前的用户幵没有将他加入指令搜寻路径中，请参考bash的PATH 说明；<br>③　很简单！因为你打错字！<br>5、/usr/share/doc：帮助说明文件目录</li>
+</ul>
 
       
     </div>
@@ -76,13 +111,13 @@
         
   
   <div class="categories">
-    <a href="/categories/blog/">blog</a>
+    <a href="/categories/《Linux私房菜基础篇》/">《Linux私房菜基础篇》</a>
   </div>
 
         
   
   <div class="tags">
-    <a href="/tags/blog/">blog</a>, <a href="/tags/article/">article</a>
+    <a href="/tags/Linux/">Linux</a>, <a href="/tags/鸟哥/">鸟哥</a>, <a href="/tags/私房菜/">私房菜</a>
   </div>
 
         
@@ -126,7 +161,7 @@ var duoshuoQuery = {short_name:"accagain"};
   }(document, 'script', 'facebook-jssdk'));
 </script>
 
-<div class="fb-comments" data-href="http://yoursite.com/2014/11/10/hello-world/" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+<div class="fb-comments" data-href="http://yoursite.com/2014/11/11/《Linux私房菜基础篇》—01-Linux的规则与安装/" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
       
   
 
@@ -134,8 +169,8 @@ var duoshuoQuery = {short_name:"accagain"};
 
 <nav id="pagination" >
     
-    <a href="/2014/11/11/《Linux私房菜基础篇》—01-Linux的规则与安装/" class="alignleft prev" >上一页</a>
     
+    <a href="/2014/11/10/hello-world/" class="alignright next" >下一页</a>
     
     <div class="clearfix"></div>
 </nav>
