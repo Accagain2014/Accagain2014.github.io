@@ -4,7 +4,7 @@
   <meta name="Accagain" content="Accagain">
   <meta charset="utf-8" >
   
-  <title>Accagain&#39;s blog</title>
+  <title>模拟登陆-BBS十大魅力学子投票 | Accagain&#39;s blog</title>
   <meta name="author" content="Accagain">
   
   <meta name="description" content="Accagain&#39;s blog">
@@ -12,7 +12,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  
+  <meta property="og:title" content="模拟登陆-BBS十大魅力学子投票"/>
   <meta property="og:site_name" content="Accagain&#39;s blog"/>
 
   
@@ -49,30 +49,62 @@
 </nav>
 <div class="clearfix"></div></header>
   <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper"><article class="page">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
   
   <div class="post-content">
     <header>
       
+        <div class="icon"></div>
+        <time datetime="2014-12-08T11:28:21.000Z"><a href="/2014/12/08/模拟登陆-BBS十大魅力学子投票/">12月 8 2014</a></time>
+      
       
   
-    <h1 class="title"></h1>
+    <h1 class="title">模拟登陆-BBS十大魅力学子投票</h1>
   
 
     </header>
     <div class="entry">
       
         <hr>
-<h1 id="ID_:_Accagain">ID : Accagain</h1>
-<h1 id="URL_:_http://chenmaosen-com/">URL : <a href="http://chenmaosen.com/" target="_blank" rel="external">http://chenmaosen.com/</a></h1>
-<h1 id="Description_:_帝都CS实习_&amp;&amp;_CS硕士">Description : 帝都CS实习 &amp;&amp; CS硕士</h1>
+<h3 id="用php模拟登陆WUST_BBS_进十大魅力学子投票页面，模拟投票。">用php模拟登陆WUST BBS 进十大魅力学子投票页面，模拟投票。</h3>
+<h3 id="主要用途：模拟登陆、选择投票的人物随机选其他人凑齐总数">主要用途：模拟登陆、选择投票的人物随机选其他人凑齐总数</h3>
+<ul>
+<li><code>网址：</code><br>1) 投票登陆地址：<a href="http://bbs.wust.edu.cn/vote/vote/member/index.php" target="_blank" rel="external">http://bbs.wust.edu.cn/vote/vote/member/index.php</a><br>  　post -&gt; <a href="http://bbs.wust.edu.cn/vote/vote/member/index.php" target="_blank" rel="external">http://bbs.wust.edu.cn/vote/vote/member/index.php</a><br>2) 投票地址：<a href="http://bbs.wust.edu.cn/vote/vote/index.php" target="_blank" rel="external">http://bbs.wust.edu.cn/vote/vote/index.php</a><br>  　post -&gt; <a href="http://bbs.wust.edu.cn/vote/vote/ajax.php" target="_blank" rel="external">http://bbs.wust.edu.cn/vote/vote/ajax.php</a><br>3) 请求验证码url地址：<a href="http://bbs.wust.edu.cn/vote/vote/includes/rand_func.php" target="_blank" rel="external">http://bbs.wust.edu.cn/vote/vote/includes/rand_func.php</a></li>
+</ul>
+<ul>
+<li><code>问题：</code><br>1) 验证码:    需要手动输入<br>2) 账号:    后台要验证账号的合法性，只能收集账号</li>
+</ul>
+<p><a id="more"></a></p>
+<ul>
+<li><p><code>主要步骤：</code><br>1) 先请求登陆页面的验证码url,并同时得到cookie,手动识别<br>2) 带着cookie,post登陆信息和识别的验证码信息<br>3) 登录成功后,带着cookie请求投票所需输入的验证码url,手动识别<br>4) 带着cookie,post投票的人物信息和投票验证码信息<br>5) 清除cookie,让下一个用户投票</p>
+</li>
+<li><p><code>运用技术：</code><br>1) php里的snoopy类抓取网页<br>2) php里的curl请求网页得到cookie</p>
+</li>
+<li><p><a href="https://github.com/Accagain2014/WUST-BBS-simulator-vote" target="_blank" rel="external">代码下载</a></p>
+</li>
+</ul>
+<h2 id="运行结果截图："><code>运行结果截图：</code></h2>
+<h2><img src="http://ww4.sinaimg.cn/large/e6c22e4cgw1en2l644873j209m02vjrc.jpg" alt=""></h2>
+<h2 id="-1"><img src="http://ww1.sinaimg.cn/large/e6c22e4cgw1en2l6d6r9hj208x02zdfs.jpg" alt=""></h2>
+<h2 id="-1"><img src="http://ww1.sinaimg.cn/large/e6c22e4cgw1en2l6qbuouj20bf03ymx6.jpg" alt=""></h2>
+<h2 id="-1"><img src="http://ww1.sinaimg.cn/large/e6c22e4cgw1en2l6z0ev5j20o104yglt.jpg" alt=""></h2>
 
       
     </div>
     <footer>
       
         
+  
+  <div class="categories">
+    <a href="/categories/php/">php</a>
+  </div>
+
         
+  
+  <div class="tags">
+    <a href="/tags/php/">php</a>
+  </div>
+
         
       
       <div class="clearfix"></div>
@@ -114,7 +146,7 @@ var duoshuoQuery = {short_name:"accagain"};
   }(document, 'script', 'facebook-jssdk'));
 </script>
 
-<div class="fb-comments" data-href="http://yoursite.com/about/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+<div class="fb-comments" data-href="http://yoursite.com/2014/12/08/模拟登陆-BBS十大魅力学子投票/" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
       
   
 
