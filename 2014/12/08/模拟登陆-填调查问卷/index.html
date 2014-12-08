@@ -1,0 +1,226 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta name="Accagain" content="Accagain">
+  <meta charset="utf-8" >
+  
+  <title>模拟登陆-填调查问卷 | Accagain&#39;s blog</title>
+  <meta name="author" content="Accagain">
+  
+  <meta name="description" content="Accagain&#39;s blog">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="模拟登陆-填调查问卷"/>
+  <meta property="og:site_name" content="Accagain&#39;s blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.ico" rel="icon" type="image/x-ico">
+  <link rel="alternate" href="/atom.xml" title="Accagain&#39;s blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Accagain&#39;s blog</a></h1>
+  <h2><a href="/">Enjoy the communications and do better ! ---- cms</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">主页</a></li>
+    
+      <li><a href="/archives">归档</a></li>
+    
+      <li><a href="/about">关于</a></li>
+    
+      <li><a href="/csdn">我的CSDN博客</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-12-08T10:44:23.000Z"><a href="/2014/12/08/模拟登陆-填调查问卷/">12月 8 2014</a></time>
+      
+      
+  
+    <h1 class="title">模拟登陆-填调查问卷</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <hr>
+<h3 id="主要用php里面的curl模拟登陆，获取cookie，带着cookie_post数据，模拟批量投调查问卷。">主要用php里面的curl模拟登陆，获取cookie，带着cookie post数据，模拟批量投调查问卷。</h3>
+<ul>
+<li><h4 id="主要步骤"><code>主要步骤</code></h4>
+1)请求登陆网页得到cookie：<a href="http://adou.wustnews.com:8080/whcc/" target="_blank" rel="external">http://adou.wustnews.com:8080/whcc/</a><br>2)带着cookie post登陆数据[所属单位、院系、学号、姓名]<br>3)带着cookie post问卷答案</li>
+</ul>
+<p>PS:<br>注意要先访问登陆网页，得到cookie.不能先post登录信息再获得cookie<br><a id="more"></a></p>
+<h4 id="完整代码："><strong>完整代码：</strong></h4>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor">&lt;?php</span></div><div class="line"></div><div class="line"><span class="comment">//分析知，后台是按照学号来区分参没参与问卷调查，只需把名字改成编码</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">//$num1 = "20131313****";</span></div><div class="line"><span class="comment">//$name1 = "****";</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">vote</span><span class="params">(<span class="variable">$num</span>,<span class="variable">$name</span>)</span></span></div><div class="line">{</div><div class="line">	<span class="variable">$temp</span> = rawurlencode(<span class="variable">$name</span>); <span class="comment">//把汉字变成16进制编码</span></div><div class="line">	<span class="variable">$test_url</span> = <span class="string">"http://adou.wustnews.com:8080/whcc/"</span>;</div><div class="line">	<span class="variable">$log_url</span> = <span class="string">"http://adou.wustnews.com:8080/whcc/helpManager"</span>;</div><div class="line"></div><div class="line">	<span class="variable">$post_field</span> = <span class="string">"function-department=1&unit_id=13&unit_id1=0&name=$temp&cardNumber=$num&status=login"</span>;</div><div class="line">	<span class="comment">//function-department=1&unit_id=13&unit_id1=0&name=%E5%B1%88%E6%B1%9F%E5%8D%8E&cardNumber=201113137072&status=login</span></div><div class="line">	<span class="variable">$cookie_file</span> = dirname(<span class="keyword">__FILE__</span>).<span class="string">'\cookie'</span>;</div><div class="line"></div><div class="line">	<span class="variable">$ch</span> = curl_init(<span class="variable">$test_url</span>);</div><div class="line">	curl_setopt(<span class="variable">$ch</span>,CURLOPT_RETURNTRANSFER,<span class="number">1</span>);</div><div class="line">	curl_setopt(<span class="variable">$ch</span>,CURLOPT_COOKIEJAR,<span class="variable">$cookie_file</span>); <span class="comment">//得到cookie</span></div><div class="line">	curl_exec(<span class="variable">$ch</span>);</div><div class="line">	curl_close(<span class="variable">$ch</span>);</div><div class="line"></div><div class="line">	<span class="variable">$ch</span> = curl_init(<span class="variable">$log_url</span>);   <span class="comment">//提交登录信息</span></div><div class="line">	curl_setopt(<span class="variable">$ch</span>,CURLOPT_RETURNTRANSFER,<span class="number">1</span>);</div><div class="line">	curl_setopt(<span class="variable">$ch</span>, CURLOPT_HEADER, <span class="number">0</span>);</div><div class="line">	curL_setopt(<span class="variable">$ch</span>,CURLOPT_POST,<span class="number">1</span>);</div><div class="line">	curL_setopt(<span class="variable">$ch</span>,CURLOPT_POSTFIELDS,<span class="variable">$post_field</span>);</div><div class="line">	curl_setopt(<span class="variable">$ch</span>,CURLOPT_COOKIEFILE,<span class="variable">$cookie_file</span>);</div><div class="line">	<span class="comment">//curl_setopt($ch,CURLOPT_COOKIEFJAR,$cookie_file);</span></div><div class="line">	curl_exec(<span class="variable">$ch</span>);</div><div class="line">	curl_close(<span class="variable">$ch</span>);</div><div class="line"></div><div class="line">	 </div><div class="line">	<span class="variable">$post</span> = <span class="string">"s-answer1=1&s-answer2=1&s-answer3=1&s-answer4=1&s-answer5=1&s-answer6=1&s-answer7=1&s-answer8=1&s-answer9=1&s-answer10=1&s-answer11=1&s-answer12=1&s-answer13=1&s-answer14=1&s-answer15=1&s-answer16=1&s-answer17=1&s-answer18=1&s-answer19=1&s-answer20=1&s-answer21=1&s-answer22=1&s-answer23=1&s-answer24=1&s-answer25=on&s-answer25=on&s-answer26=on&s-answer26=on&s-answer26=on&s-answer27=on&s-answer27=on&status=submit"</span>;</div><div class="line">	<span class="variable">$ch</span> = curl_init(<span class="variable">$log_url</span>);  <span class="comment">//提交问卷答案</span></div><div class="line">	curl_setopt(<span class="variable">$ch</span>,CURLOPT_RETURNTRANSFER,<span class="number">1</span>);</div><div class="line">	curl_setopt(<span class="variable">$ch</span>, CURLOPT_HEADER, <span class="number">0</span>);</div><div class="line">	curL_setopt(<span class="variable">$ch</span>,CURLOPT_POST,<span class="number">1</span>);</div><div class="line">	curL_setopt(<span class="variable">$ch</span>,CURLOPT_POSTFIELDS,<span class="variable">$post</span>);</div><div class="line">	curl_setopt(<span class="variable">$ch</span>,CURLOPT_COOKIEFILE,<span class="variable">$cookie_file</span>);</div><div class="line"></div><div class="line"></div><div class="line">	<span class="variable">$out</span> = curl_exec(<span class="variable">$ch</span>);</div><div class="line">	curl_close(<span class="variable">$ch</span>);</div><div class="line"></div><div class="line">	<span class="keyword">echo</span> <span class="variable">$out</span>;  <span class="comment">//输出投票结果</span></div><div class="line">	<span class="variable">$fp</span> = fopen(<span class="string">"wustnews.html"</span>,<span class="string">"w"</span>);</div><div class="line">	fwrite(<span class="variable">$fp</span>,<span class="variable">$out</span>);</div><div class="line">	fclose(<span class="variable">$fp</span>); </div><div class="line">}</div><div class="line"><span class="comment">/*</span></div><div class="line">$num = "20111313****";</div><div class="line">$name = "***";</div><div class="line">*/</div><div class="line"><span class="comment">//vote($num1,$name1);</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="variable">$fp</span> = fopen(<span class="string">"11.txt"</span>,<span class="string">"r"</span>); <span class="comment">//打开要投的学号和姓名</span></div><div class="line"></div><div class="line"><span class="comment">//$fp1 = fopen("out1.txt","a");</span></div><div class="line"></div><div class="line"><span class="keyword">if</span>(<span class="variable">$fp</span>)</div><div class="line">{</div><div class="line">	<span class="keyword">while</span>(!feof(<span class="variable">$fp</span>))</div><div class="line">	{</div><div class="line">		<span class="variable">$cc</span> = fgets(<span class="variable">$fp</span>);  <span class="comment">//每次读一行</span></div><div class="line">		<span class="variable">$temp</span> = <span class="keyword">array</span>();</div><div class="line"></div><div class="line">		<span class="variable">$temp</span> = explode(<span class="string">"\t"</span>,<span class="variable">$cc</span>);  <span class="comment">//分割，注意是以制表符分割，不是空格，搞了好久</span></div><div class="line">		<span class="keyword">echo</span> <span class="variable">$temp</span>[<span class="number">0</span>].<span class="string">" "</span>.<span class="variable">$temp</span>[<span class="number">1</span>].<span class="string">"&lt;/br&gt;"</span>;</div><div class="line">		vote(<span class="variable">$temp</span>[<span class="number">0</span>],<span class="variable">$temp</span>[<span class="number">1</span>]); <span class="comment">//每个人投票</span></div><div class="line">	}</div><div class="line">	</div><div class="line">}</div><div class="line"><span class="comment">//fclose($fp1);</span></div><div class="line">fclose(<span class="variable">$fp</span>);</div><div class="line"><span class="preprocessor">?&gt;</span></div></pre></td></tr></table></figure>
+
+<p><strong>运行结果截图：</strong></p>
+<p><img src="http://ww1.sinaimg.cn/large/e6c22e4cgw1en2hsixregj20qq0htacc.jpg" alt=""></p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/php/">php</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/php/">php</a>, <a href="/tags/模拟登陆/">模拟登陆</a>
+  </div>
+
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+
+<!-- ��˵���ۿ� start -->
+	<div class="ds-thread" data-thread-key="�뽫�˴��滻������������վ���е�ID" data-title="���滻�����µı���" data-url="���滻�����µ���ַ"></div>
+<!-- ��˵���ۿ� end -->
+<!-- ��˵����JS���� start (һ����ҳֻ������һ��) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"accagain"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- ��˵����JS���� end -->
+
+<h1 class="title">留言</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://yoursite.com/2014/12/08/模拟登陆-填调查问卷/" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+
+
+  </section>
+
+
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+   
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/Lectures/">Lectures</a><small>1</small></li>
+  
+    <li><a href="/categories/blog/">blog</a><small>1</small></li>
+  
+    <li><a href="/categories/php/">php</a><small>1</small></li>
+  
+    <li><a href="/categories/《Linux私房菜基础篇》/">《Linux私房菜基础篇》</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tagcloud">
+  <h3 class="title">标签云</h3>
+  <div class="entry">
+    <a href="/tags/Lecture/" style="font-size: NaNpx;">Lecture</a><a href="/tags/Linux/" style="font-size: NaNpx;">Linux</a><a href="/tags/article/" style="font-size: NaNpx;">article</a><a href="/tags/blog/" style="font-size: NaNpx;">blog</a><a href="/tags/php/" style="font-size: NaNpx;">php</a><a href="/tags/模拟登陆/" style="font-size: NaNpx;">模拟登陆</a><a href="/tags/私房菜/" style="font-size: NaNpx;">私房菜</a><a href="/tags/鸟哥/" style="font-size: NaNpx;">鸟哥</a>
+  </div>
+</div>
+
+
+  <div class="widget tag">
+<h3 class="title">友情链接</h3>
+<ul class="entry">
+<li><a href="http://www.keepstudying.net/">PrettyDad</a></li>
+<li><a href="http://www.xysay.com/">xysay</a></li>
+<li><a href="http://shallyan.com/">Shallyan</a></li>
+<li><a href="http://www.boblee0717.com/">Boblee</a></li>
+</ul>
+</div>
+
+  <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=2&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=3871485516&verifier=4ca01292&dpc=1"></iframe>
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2014 Accagain
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+<a title="返回顶部"><img src="/imgs/scrollup.png"/></a>
+</div>
+<script src="/js/totop.js"></script>
+
+</body>
+</html>
