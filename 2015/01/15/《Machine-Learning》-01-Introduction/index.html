@@ -4,7 +4,7 @@
   <meta name="Accagain" content="Accagain">
   <meta charset="utf-8" >
   
-  <title>模拟登陆-BBS十大魅力学子投票 | Accagain</title>
+  <title>《Machine Learning》-01 Introduction | Accagain</title>
   <meta name="author" content="Accagain">
   
   <meta name="description" content="Accagain&#39;s blog">
@@ -12,7 +12,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="模拟登陆-BBS十大魅力学子投票"/>
+  <meta property="og:title" content="《Machine Learning》-01 Introduction"/>
   <meta property="og:site_name" content="Accagain"/>
 
   
@@ -55,39 +55,33 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2014-12-08T11:28:21.000Z"><a href="/2014/12/08/模拟登陆-BBS十大魅力学子投票/">12月 8 2014</a></time>
+        <time datetime="2015-01-15T02:38:40.000Z"><a href="/2015/01/15/《Machine-Learning》-01-Introduction/">1月 15 2015</a></time>
       
       
   
-    <h1 class="title">模拟登陆-BBS十大魅力学子投票</h1>
+    <h1 class="title">《Machine Learning》-01 Introduction</h1>
   
 
     </header>
     <div class="entry">
       
         <hr>
-<h3 id="用php模拟登陆WUST_BBS_进十大魅力学子投票页面，模拟投票。">用php模拟登陆WUST BBS 进十大魅力学子投票页面，模拟投票。</h3>
-<h3 id="主要用途：模拟登陆、选择投票的人物随机选其他人凑齐总数">主要用途：模拟登陆、选择投票的人物随机选其他人凑齐总数</h3>
-<ul>
-<li><code>网址：</code><br>1) 投票登陆地址：<a href="http://bbs.wust.edu.cn/vote/vote/member/index.php" target="_blank" rel="external">http://bbs.wust.edu.cn/vote/vote/member/index.php</a><br>  　post -&gt; <a href="http://bbs.wust.edu.cn/vote/vote/member/index.php" target="_blank" rel="external">http://bbs.wust.edu.cn/vote/vote/member/index.php</a><br>2) 投票地址：<a href="http://bbs.wust.edu.cn/vote/vote/index.php" target="_blank" rel="external">http://bbs.wust.edu.cn/vote/vote/index.php</a><br>  　post -&gt; <a href="http://bbs.wust.edu.cn/vote/vote/ajax.php" target="_blank" rel="external">http://bbs.wust.edu.cn/vote/vote/ajax.php</a><br>3) 请求验证码url地址：<a href="http://bbs.wust.edu.cn/vote/vote/includes/rand_func.php" target="_blank" rel="external">http://bbs.wust.edu.cn/vote/vote/includes/rand_func.php</a></li>
-</ul>
-<ul>
-<li><code>问题：</code><br>1) 验证码:    需要手动输入<br>2) 账号:    后台要验证账号的合法性，只能收集账号</li>
-</ul>
-<p><a id="more"></a></p>
-<ul>
-<li><p><code>主要步骤：</code><br>1) 先请求登陆页面的验证码url,并同时得到cookie,手动识别<br>2) 带着cookie,post登陆信息和识别的验证码信息<br>3) 登录成功后,带着cookie请求投票所需输入的验证码url,手动识别<br>4) 带着cookie,post投票的人物信息和投票验证码信息<br>5) 清除cookie,让下一个用户投票</p>
-</li>
-<li><p><code>运用技术：</code><br>1) php里的snoopy类抓取网页<br>2) php里的curl请求网页得到cookie</p>
-</li>
-<li><p><a href="https://github.com/Accagain2014/WUST-BBS-simulator-vote" target="_blank" rel="external">代码下载</a></p>
-</li>
-</ul>
-<h2 id="运行结果截图："><code>运行结果截图：</code></h2>
-<h2><img src="http://ww4.sinaimg.cn/large/e6c22e4cgw1en2l644873j209m02vjrc.jpg" alt=""></h2>
-<h2 id="-1"><img src="http://ww1.sinaimg.cn/large/e6c22e4cgw1en2l6d6r9hj208x02zdfs.jpg" alt=""></h2>
-<h2 id="-1"><img src="http://ww1.sinaimg.cn/large/e6c22e4cgw1en2l6qbuouj20bf03ymx6.jpg" alt=""></h2>
-<h2 id="-1"><img src="http://ww1.sinaimg.cn/large/e6c22e4cgw1en2l6z0ev5j20o104yglt.jpg" alt=""></h2>
+<h3 id="_回家之前这段时间争取把Andrew_Ng的机器学习视频看完吧，作为入门，做工程挺没意思的。看了机器学习的一些应用觉得挺有意思的，好好琢磨一下吧。慢慢的尝试，然后找到自己的方向。">　　回家之前这段时间争取把Andrew Ng的机器学习视频看完吧，作为入门，做工程挺没意思的。看了机器学习的一些应用觉得挺有意思的，好好琢磨一下吧。慢慢的尝试，然后找到自己的方向。</h3>
+<p><img src="http://ww1.sinaimg.cn/large/e6c22e4cgw1eoa0mtecq6j209a0bf0tg.jpg" alt=""><br><a id="more"></a></p>
+<h2 id="Definition:"><strong>Definition:</strong></h2>
+<h4 id="Arthur_Samuel_(1959)-_Machine_Learning:_Field_of_study_that_gives_computers_the_ability_to_learn_without_being_explicitly_programmed-"><strong>Arthur Samuel (1959).</strong> Machine Learning: Field of study that gives computers the ability to learn without being explicitly programmed.</h4>
+<h4 id="Tom_Mitchell_(1998)-_Well-posed_Learning_Problem:_A_computer_program_is_said_to_learn_from_experience_E_with_respect_to_some_task_T_and_some_performance_measure_P,_if_its_performance_on_T,_as_measured_by_P,_improves_with_experience_E-*"><strong>Tom Mitchell (1998).</strong> Well-posed Learning Problem: A computer program is said to learn from experience E with respect to some task T and some performance measure P, if its performance on T, as measured by P, improves with experience E.*</h4>
+<p><strong>第一种定义：</strong>机器学习——通过给计算机学习能力，而没有明确地编程的领域。<br><strong>第二种定义：</strong>适定的学习问题——对于任务T，用评测标准P，性能能够根据训练集E提升的计算机程序。</p>
+<h2 id="机器学习算法:"><strong>机器学习算法:</strong></h2>
+<p><strong>主要：</strong><br>　　　　Supervised Learning [监督学习]<br>　　　　Unsupervised Learning [无监督学习]<br><strong>其他：</strong><br>　　　　Reinforcement learning[加强学习],recommender systems[推荐系统]</p>
+<h3 id="Supervised_Learning:[监督学习]"><strong>Supervised Learning:[监督学习]</strong></h3>
+<pre><code>    <span class="string">'right answer'</span> <span class="keyword">given</span>：训练集是正确的
+</code></pre><p><img src="http://ww2.sinaimg.cn/large/e6c22e4cjw1eoa7ymoqsyj20gf0bh406.jpg" alt=""><br>　　<strong>Regression:[回归]</strong>　predict continuous[连续] values output<br>　　<strong>Classification:[分类]</strong>　discrete[离散] valued ouput</p>
+<h3 id="Unsupervised_Learning:[无监督学习/聚类算法]"><strong>Unsupervised Learning:[无监督学习/聚类算法]</strong></h3>
+<h2 id="总结和比较："><strong>总结和比较：</strong></h2>
+<p><img src="http://ww1.sinaimg.cn/large/e6c22e4cjw1eoa8bkmoskj20ib08jmy9.jpg" alt=""></p>
+<h3 id="无人机自主学习、分离噪声等例子好有趣。"><strong>无人机自主学习、分离噪声等例子好有趣。</strong></h3>
+<h3 id="学习环境：matlab或">学习环境：matlab或</h3>
 
       
     </div>
@@ -96,13 +90,13 @@
         
   
   <div class="categories">
-    <a href="/categories/php/">php</a>
+    <a href="/categories/Machine-Learing/">Machine Learing</a>
   </div>
 
         
   
   <div class="tags">
-    <a href="/tags/php/">php</a>
+    <a href="/tags/Machine-Learning/">Machine Learning</a>, <a href="/tags/Andrew-Ng/">Andrew Ng</a>
   </div>
 
         
@@ -146,7 +140,7 @@ var duoshuoQuery = {short_name:"accagain"};
   }(document, 'script', 'facebook-jssdk'));
 </script>
 
-<div class="fb-comments" data-href="http://yoursite.com/2014/12/08/模拟登陆-BBS十大魅力学子投票/" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+<div class="fb-comments" data-href="http://yoursite.com/2015/01/15/《Machine-Learning》-01-Introduction/" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
       
   
 
