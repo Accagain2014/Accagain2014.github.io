@@ -4,7 +4,7 @@
   <meta name="Accagain" content="Accagain">
   <meta charset="utf-8" >
   
-  <title>Accagain</title>
+  <title>《Machine Learning》-03 Linear Regression with multiple variables | Accagain</title>
   <meta name="author" content="Accagain">
   
   <meta name="description" content="Accagain&#39;s blog">
@@ -12,7 +12,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  
+  <meta property="og:title" content="《Machine Learning》-03 Linear Regression with multiple variables"/>
   <meta property="og:site_name" content="Accagain"/>
 
   
@@ -49,30 +49,60 @@
 </nav>
 <div class="clearfix"></div></header>
   <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper"><article class="page">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
   
   <div class="post-content">
     <header>
       
+        <div class="icon"></div>
+        <time datetime="2015-01-16T07:09:22.000Z"><a href="/2015/01/16/《Machine-Learning》-03-Linear-Regression-with-multiple-variables/">1月 16 2015</a></time>
+      
       
   
-    <h1 class="title"></h1>
+    <h1 class="title">《Machine Learning》-03 Linear Regression with multiple variables</h1>
   
 
     </header>
     <div class="entry">
       
         <hr>
-<h1 id="ID_:_Accagain">ID : Accagain</h1>
-<h1 id="URL_:_http://chenmaosen-com/">URL : <a href="http://chenmaosen.com/" target="_blank" rel="external">http://chenmaosen.com/</a></h1>
-<h1 id="Description_:_帝都CS实习_&amp;&amp;_CS硕士">Description : 帝都CS实习 &amp;&amp; CS硕士</h1>
+<h2 id="Multiple_features"><strong>Multiple features</strong></h2>
+<p><a id="more"></a><br><img src="http://ww1.sinaimg.cn/large/e6c22e4cjw1eocw1zbdr5j20po0d4ae3.jpg" alt=""></p>
+<h2 id="Gradient_descent_for_multiple_variables"><strong>Gradient descent for multiple variables</strong></h2>
+<p><img src="http://ww4.sinaimg.cn/large/e6c22e4cjw1eocw5i32w6j20pq0egq61.jpg" alt=""><br><img src="http://ww3.sinaimg.cn/large/e6c22e4cjw1eocw6bq3r3j20pu0e6wj9.jpg" alt=""></p>
+<h2 id="Gradient_descent_in_practice_I_:_Feature_Scaling"><strong>Gradient descent in practice I : Feature Scaling</strong></h2>
+<h3 id="梯度下降算法实用技巧：特征归一化">梯度下降算法实用技巧：特征归一化</h3>
+<p><img src="http://ww2.sinaimg.cn/large/e6c22e4cgw1eocwcf6k4ej20q80e4dkh.jpg" alt=""></p>
+<h3 id="如果变量X范围相差很大，可以通过变量缩放，归一化。使各个X都相对差不多，这样可以加速收敛过程。">如果变量X范围相差很大，可以通过变量缩放，归一化。使各个X都相对差不多，这样可以加速收敛过程。</h3>
+<h3 id="Mean_normalization：均值归一化_X=(X-U)/S_(U为平均值，S为Max-Min)"><strong>Mean normalization：均值归一化 X=(X-U)/S (U为平均值，S为Max-Min)</strong></h3>
+<p><img src="http://ww1.sinaimg.cn/large/e6c22e4cgw1eocwizmfm9j20pi0eddjy.jpg" alt=""></p>
+<h2 id="Gradient_descent_in_practice_II:Learning_rate"><strong>Gradient descent in practice II:Learning rate</strong></h2>
+<h3 id="_梯度下降算法实用技巧：关于步长">　梯度下降算法实用技巧：关于步长</h3>
+<p><img src="http://ww1.sinaimg.cn/large/e6c22e4cjw1eocwmlr70mj20py0ec78n.jpg" alt=""><br><img src="http://ww1.sinaimg.cn/large/e6c22e4cjw1eocwnsnmcej20pk0dp42r.jpg" alt=""><br><img src="http://ww1.sinaimg.cn/large/e6c22e4cjw1eocwoe35i1j20pe0e8427.jpg" alt=""></p>
+<h3 id="_关于α的选择：太小了，会减小收敛的速度；太大了，则在每次迭代时，J不会减少。可以根据迭代次数与J值的函数关系，适当做些评估，然后改变α的值：如果随着迭代次数的增多，J上升则减小α，直到J减小幅度达到精度。因为很小的α肯定没问题，所以还可以开始用比较小的α，然后每次乘以3倍：0-01,0-03,0-1，0-3,1……-直到达到比较好的效果。">　　关于α的选择：太小了，会减小收敛的速度；太大了，则在每次迭代时，J不会减少。可以根据迭代次数与J值的函数关系，适当做些评估，然后改变α的值：如果随着迭代次数的增多，J上升则减小α，直到J减小幅度达到精度。因为很小的α肯定没问题，所以还可以开始用比较小的α，然后每次乘以3倍：0.01,0.03,0.1，0.3,1……..直到达到比较好的效果。</h3>
+<h2 id="Features_and_polynomial_regression"><strong>Features and polynomial regression</strong></h2>
+<p><img src="http://ww1.sinaimg.cn/large/e6c22e4cgw1eocx0nylirj20qe0e2gos.jpg" alt=""></p>
+<h3 id="_多项式回归可以转换成多变量的线性回归">　　多项式回归可以转换成多变量的线性回归</h3>
+<h2 id="Normal_equation[正规方程]"><strong>Normal equation[正规方程]</strong></h2>
+<p><img src="http://ww1.sinaimg.cn/large/e6c22e4cjw1eocx5opanwj20pq0e7di1.jpg" alt=""><br><img src="http://ww3.sinaimg.cn/large/e6c22e4cgw1eocx7qcncrj20mo0ddtaj.jpg" alt=""><br><img src="http://ww4.sinaimg.cn/large/e6c22e4cjw1eocx9dgbxxj20cq01i74h.jpg" alt=""><br><img src="http://ww2.sinaimg.cn/large/e6c22e4cjw1eocx8zb70sj20pm0dg42z.jpg" alt=""></p>
+<h3 id="_使用正规方程，能够一步求出解，但使用梯度下降算法则需要迭代和求大规模的矩阵的逆。但要注意X^TX不可逆的情况。原因有两个，特征之间线性相关。或特征多于训练集数目。">　　使用正规方程，能够一步求出解，但使用梯度下降算法则需要迭代和求大规模的矩阵的逆。但要注意X^TX不可逆的情况。原因有两个，特征之间线性相关。或特征多于训练集数目。</h3>
 
       
     </div>
     <footer>
       
         
+  
+  <div class="categories">
+    <a href="/categories/Machine-Learning/">Machine Learning</a>
+  </div>
+
         
+  
+  <div class="tags">
+    <a href="/tags/Machine-Learning/">Machine Learning</a>, <a href="/tags/Andrew-Ng/">Andrew Ng</a>
+  </div>
+
         
       
       <div class="clearfix"></div>
@@ -114,7 +144,7 @@ var duoshuoQuery = {short_name:"accagain"};
   }(document, 'script', 'facebook-jssdk'));
 </script>
 
-<div class="fb-comments" data-href="http://yoursite.com/about/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+<div class="fb-comments" data-href="http://yoursite.com/2015/01/16/《Machine-Learning》-03-Linear-Regression-with-multiple-variables/" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
       
   
 
