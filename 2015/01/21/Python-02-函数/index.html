@@ -1,0 +1,337 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta name="Accagain" content="Accagain">
+  <meta charset="utf-8" >
+  
+  <title>Python 02 函数 | Accagain</title>
+  <meta name="author" content="Accagain">
+  
+  <meta name="description" content="Accagain&#39;s blog">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Python 02 函数"/>
+  <meta property="og:site_name" content="Accagain"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.ico" rel="icon" type="image/x-ico">
+  <link rel="alternate" href="/atom.xml" title="Accagain" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Accagain</a></h1>
+  <h2><a href="/">Enjoy the communications and do better ! ---- cms</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">主页</a></li>
+    
+      <li><a href="/archives">归档</a></li>
+    
+      <li><a href="/about">关于</a></li>
+    
+      <li><a href="/csdn">我的CSDN博客</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2015-01-21T08:06:36.000Z"><a href="/2015/01/21/Python-02-函数/">1月 21 2015</a></time>
+      
+      
+  
+    <h1 class="title">Python 02 函数</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <hr>
+<h2 id="函数_&amp;&amp;_抽象"><strong>函数 &amp;&amp; 抽象</strong></h2>
+<ul>
+<li>计算机程序中，函数就是最基本的一种代码抽象的方式**</li>
+<li>函数名其实就是指向一个函数对象的引用，完全可以把函数名赋给一个变量，相当于给这个函数起了一个别名<br><strong>定义函数</strong><br>　　def 依次写出函数名、括号、括号中的参数和冒号: 然后缩进块中写函数体，函数的返回值用return语句<br>　　def my_abs(x):<br>　　　　if x&gt;=0:<br>　　　　　return x<br>　　　　else：<br>　　　　　return -x</li>
+</ul>
+<p><a id="more"></a></p>
+<ul>
+<li><p>pass：想定义一个什么事也不做的空函数，可以用pass语句<br>　　def nop():<br>　　　pass</p>
+</li>
+<li><p>isinstance: 数据类型检查的内置函数<br>　　　if not isinstance(x,(int,float)):<br>　　　　raise TypeError(‘bad operand type’)</p>
+</li>
+<li>函数可以同时返回多个值，但其实就是一个tuple</li>
+</ul>
+<h2 id="函数参数"><strong>函数参数</strong></h2>
+<ul>
+<li><p><strong>默认参数</strong><br>　　必选参数在前，默认参数在后<br>　　默认参数必须指向不变对象<br><img src="http://ww3.sinaimg.cn/large/e6c22e4cjw1eoh80ous4bj20im02b749.jpg" alt=""><br><img src="http://ww1.sinaimg.cn/large/e6c22e4cjw1eoh81v8wq9j20il05ydga.jpg" alt=""><br><img src="http://ww3.sinaimg.cn/large/e6c22e4cgw1eoh82ymogsj20i8073ab0.jpg" alt=""></p>
+</li>
+<li><p><strong>可变参数</strong><br>Python允许在list或tuple前面加一个*号，把list或tuple的元素变成可变参数传进去<br><img src="http://ww4.sinaimg.cn/large/e6c22e4cgw1eoh895rvdfj208008e3z6.jpg" alt=""></p>
+</li>
+<li><p><strong>关键字参数</strong><br>关键字参数允许传入0个或任意个含参数名的参数，这些关键字参数在函数内部自动组装为一个dict.<br>关键字参数有扩展参数的功能<br><img src="http://ww3.sinaimg.cn/large/e6c22e4cjw1eoh8nznkdqj20gr06xach.jpg" alt=""></p>
+</li>
+<li><p><strong>参数组合</strong><br>在Python中定义函数，可以用必选参数、默认参数、可变参数和关键字参数，这4种参数都可以一起使用，或者只用其中某些，但注意，参数定义的顺序必须是：<strong>必选参数、默认参数、可变参数和关键字参数</strong><br>在函数调用时，Python解释器<strong>自动按照参数位置和参数名把对应的参数传进去</strong><br>当然，可以<strong>通过一个tuple和dict</strong>，也可以调用该函数<br><img src="http://ww3.sinaimg.cn/large/e6c22e4cjw1eohawga3e5j20my0bdq5h.jpg" alt=""></p>
+</li>
+<li><strong>总结</strong><br>Python函数具有非常灵活的参数形态，既可以实现简单的调用，又可以传入非常复杂的参数<br>默认参数一定要用不可变对象，如果是可变对象，运行会有逻辑错误<br>×args是可变参数，args可以接受的是一个tuple<br>**kv是关键字参数，kv接受的是一个dict</li>
+</ul>
+<h2 id="递归函数"><strong>递归函数</strong></h2>
+<ul>
+<li>一个函数内部调用自身本身，这个函数就是递归函数</li>
+<li>递归函数需要注意防止栈溢出，函数调用是通过栈(stack)这种数据结构实现的，每当进入一个函数调用，栈就会加一层栈帧，栈控件有限，所以递归调用的次数不能过多</li>
+<li><strong>尾递归</strong>：在函数返回的时候，调用自身本身，并且，return语句不能包含表达式。这样，编译器或者解释器就可以把尾递归做优化，使递归本身无论调<br>用多少次，都只占用了一个栈帧，不会出现栈溢出的情况。</li>
+<li>大多数编程语言没有针对尾递归做优化，Python解释器也没有做优化</li>
+<li>针对尾递归优化的语言可以通过尾递归防止栈溢出，尾递归事实上和循环是等价的，没有循环语句的编程语言只能通过尾递归实现循环<br><img src="http://ww4.sinaimg.cn/large/e6c22e4cgw1eohde2ughmj20fh042aam.jpg" alt=""></li>
+</ul>
+<h2 id="高级特性"><strong>高级特性</strong></h2>
+<ul>
+<li>在Python中，代码不是越多越好，而是越少越好；代码不是越复杂越好，而是越简单越好。</li>
+<li>Python中有许多非常有用的高级特性，一行代码能实现的功能，绝不写5行代码</li>
+<li><strong>切片</strong><br>———tuple也可以用切片操作，只是操作的结果仍是tuple<br>———Python没有针对字符串的截取函数，只需要切片一个操作就可以完成，非常简单。</li>
+</ul>
+<h2 id="迭代"><strong>迭代</strong></h2>
+<ul>
+<li><strong>Python中很多对象可以迭代，无论有无下标</strong><br>　　　比如：dict，<br>　　　　　d = {‘a’:1,’b’:2,’c’:3}<br>　　　　　<strong>for key in d:</strong><br>　　　　　　　print key<br>　　　打印出来的是key(迭代出来的顺序和list不一样),如果要迭代value：<strong>for value in d.itervalues()</strong><br>　　　如果要同时迭代key和value：<strong>for k,v in d.iteritems()</strong><br><img src="http://ww4.sinaimg.cn/large/e6c22e4cjw1eohg3lkkxhj20dj03xaa5.jpg" alt=""></li>
+<li><strong>如何判断一个对象是否是可迭代对象</strong><br>　　通过collections模块的Iterable类型判断：<br><img src="http://ww2.sinaimg.cn/large/e6c22e4cjw1eohgrq5d7fj209v03z74x.jpg" alt=""></li>
+<li>for循环里，可以同时引用两个变量</li>
+</ul>
+<h2 id="列表生成式"><strong>列表生成式</strong></h2>
+<ul>
+<li>生成[1^2,2^2,3^2,4^2,5^2,6^2,7^2,8^2,9^2,10^2]<br><img src="http://ww1.sinaimg.cn/large/e6c22e4cgw1eoildjrgedj208r00vq2v.jpg" alt=""></li>
+<li>可以使用两层循环，生成全排列<br><img src="http://ww4.sinaimg.cn/large/e6c22e4cjw1eoiljsd425j20eg01dt8w.jpg" alt=""></li>
+<li>for循环可以同时使用两个甚至多个变量，比如dict的iteritems()可以同时迭代key和value<br><img src="http://ww2.sinaimg.cn/large/e6c22e4cgw1eoiltt8193j20dq03gq37.jpg" alt=""></li>
+<li>把一个list中所有的字符串变成小写l.lower() 判断一个变量是不是字符串isinstance(x,str)<br><img src="http://ww3.sinaimg.cn/large/e6c22e4cjw1eoilz6kg4ej20e602z74o.jpg" alt=""></li>
+</ul>
+<h2 id="生成器"><strong>生成器</strong></h2>
+<ul>
+<li><strong>Python中，一边循环一边计算的机制，称为生成器(Generator)</strong></li>
+<li>把列表生成式的[]改成(),就创建了一个generator.用next()函数可以访问下一个，也可以用直接迭代<br><img src="http://ww1.sinaimg.cn/large/e6c22e4cjw1eoim5z3q6wj20df02sweh.jpg" alt=""></li>
+<li>如果一个函数定义中包含yield关键字，那么这个函数就不再是一个普通函数，而是一个generator:<br><img src="http://ww2.sinaimg.cn/large/e6c22e4cgw1eoimik2bv9j20ee05paae.jpg" alt=""></li>
+<li>在执行过程中，遇到yield就中断，下次又继续执行。</li>
+<li>对于函数改成的generator来说，遇到return语句或者执行到函数体最后一行语句，就是结束generator的指令，for循环随之结束</li>
+</ul>
+<h2 id="函数式编程"><strong>函数式编程</strong></h2>
+<ul>
+<li><strong>函数式编程是一种抽象程度很高的编程范式，纯粹的函数式编程语言编写的函数没有变量，因此，任意一个函数，只要输入是确定的，输出就是确定的，这种纯函数我们称之为没有副作用。而允许使用变量的程序设计语言，由于函数内部的变量状态不确定，同样的输入，可能得到不同的输出，因此，这种函数是有副作用的。</strong></li>
+<li><strong>函数式编程的一个特点是，允许把函数本身作为参数传入另一个函数，还允许返回一个函数！</strong></li>
+<li>Python对函数式编程提供部分支持。由于Python允许使用变量，因此，Python不是纯函数式编程语言</li>
+</ul>
+<h2 id="高阶函数"><strong>高阶函数</strong></h2>
+<ul>
+<li>像map()函数这种能够接收函数作为参数的函数，称之为高阶函数(Higher-order function)<br><img src="http://ww3.sinaimg.cn/large/e6c22e4cjw1eoin8y601bj20cu03j3yq.jpg" alt=""></li>
+<li>reduce把一个函数作用在一个序列[x1,x2,x3…]上，这个函数必须接收两个参数，reduce把结果继续和序列的下一个元素做积累计算，其效果是：<br>　　<strong>reduce (f, [x1, x2, x3, x4]) = f(f(f(x1,x2),x3),x4)</strong><br><img src="http://ww4.sinaimg.cn/large/e6c22e4cgw1eoj86ld9bzj20kb08qdhs.jpg" alt=""></li>
+<li>filter也接受一个函数和一个序列，filter()把传入的函数依次作用于每个元素，然后根据返回值是True还是False决定保留还是丢弃元素<br><img src="http://ww4.sinaimg.cn/large/e6c22e4cgw1eoj943y0sbj20fp035q3c.jpg" alt=""></li>
+</ul>
+<h2 id="排序算法"><strong>排序算法</strong></h2>
+<ul>
+<li><strong>Python内置的sorted()函数可以对list进行排序</strong><br>  <strong>sorted[36, 5, 12, 9, 21]</strong></li>
+<li>默认情况下，对字符串排序，是按照ASCII的大小比较的</li>
+<li>sorted()函数是一个高阶函数，可以接受一个比较函数来实现自定义的排序<br><img src="http://ww2.sinaimg.cn/large/e6c22e4cjw1eoj99zv4jkj20hh07pjsi.jpg" alt=""></li>
+</ul>
+<h2 id="函数作为返回值"><strong>函数作为返回值</strong></h2>
+<ul>
+<li>高阶函数除了可以接受函数作为参数外，还可以把函数作为结果值返回<br><img src="http://ww3.sinaimg.cn/large/e6c22e4cgw1eoj9lr0la3j20b406f74p.jpg" alt=""></li>
+<li><strong>为什么不直接用这个函数，而是要返回一个函数，不是多此一举么？肯定有需要用的地方</strong></li>
+<li>内部函数sum可以引用外部函数lazy_sum的参数和局部变量，当lazy_sum返回函数sum时，相关参数和变量都保存在返回的函数中，这种称为“闭包(Closure)”的程序结构</li>
+<li><strong>返回闭包时,注意返回函数不要引用任何循环变量，或者后续会发生变化的变量。</strong></li>
+<li><p><strong>如果一定要引用循环变量，可以在创建一个函数，用该函数的参数绑定循环变量当前的值，无论该循环变量后续如何更改，已绑定到函数参数的值不变</strong><br><img src="http://ww3.sinaimg.cn/large/e6c22e4cjw1eojc9drfbcj20am06udgm.jpg" alt=""></p>
+</li>
+<li><p><strong>高阶函数：把函数作为参数传入，或者把函数作为返回值返回的函数，函数式编程就是指这种高度抽象的编程范式</strong></p>
+</li>
+<li>sum()函数可以接受一个list并求和</li>
+</ul>
+<h2 id="匿名函数"><strong>匿名函数</strong></h2>
+<ul>
+<li>不需要显示地定义函数，直接传入匿名函数更方便</li>
+<li><strong>关键字lambda表示匿名函数，冒号前面的x表示函数参数</strong></li>
+<li><strong>匿名函数有个限制，就是只能有一个表达式，不用写return,返回值就是该表达式的结果</strong></li>
+<li><strong>匿名函数有个好处，因为函数没有名字，不必担心函数名字冲突。匿名函数也是一个函数对象，可以把匿名函数赋值给一个变量，再利用变量来调用该函数</strong><br><img src="http://ww3.sinaimg.cn/large/e6c22e4cjw1eoja20mlabj20af03gwep.jpg" alt=""></li>
+</ul>
+<h2 id="装饰器"><strong>装饰器</strong></h2>
+<ul>
+<li>函数也是一个对象，而且函数对象可以被赋值给变量,通过变量也能调用该函数</li>
+<li>函数对象有一个<code>__name__</code>属性，可以拿到函数的名字</li>
+<li><strong>装饰器：在代码运行期间动态增加功能的方式，称之为”装饰器(Decorator)”</strong><br><img src="http://ww3.sinaimg.cn/large/e6c22e4cjw1eojgq33kv9j20dx06x3zf.jpg" alt=""></li>
+<li><strong>把@log放到now()函数的定义处，相当于执行了语句：</strong><br>　　<strong>now = log(now)</strong></li>
+<li><strong>那么同名的now变量指向了新的函数，于是调用now()将执行新函数，即在log()函数中返回的wrapper()函数</strong></li>
+<li>如果decorator本身需要传入参数，那就需要编写一个返回decorator的高阶函数<br><img src="http://ww2.sinaimg.cn/large/e6c22e4cgw1eojhn4cwqqj20g509wabh.jpg" alt=""></li>
+<li>Python中functools.wraps复制函数属性<br><img src="http://ww3.sinaimg.cn/large/e6c22e4cgw1eojhu2tkczj20f60awabs.jpg" alt=""></li>
+<li><strong>在面向对象(OOP)的设计模式中，decorator被称为装饰模式。OOP的装饰模式需要通过继承和组合来实现，而Python除了能支持OOP的decorator外，直接从语法层次支持decorator。Python的decorator可以用函数实现，也可以用类实现</strong></li>
+</ul>
+<h2 id="偏函数"><strong>偏函数</strong></h2>
+<ul>
+<li><strong>偏函数：(Partial function)</strong></li>
+<li><strong>functools.partial可以创建一个偏函数</strong><br><img src="http://ww1.sinaimg.cn/large/e6c22e4cjw1eoji8v8fzbj209u0353yq.jpg" alt=""></li>
+<li><strong>function.partial的作用就是，把一个函数的某些参数(不管有没有默认值)给固定住(也就是设置默认值)，返回一个新的函数，调用这个新函数会更简单</strong></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/Python/">Python</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/Python/">Python</a>
+  </div>
+
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+
+<!-- ��˵���ۿ� start -->
+	<div class="ds-thread" data-thread-key="�뽫�˴��滻������������վ���е�ID" data-title="���滻�����µı���" data-url="���滻�����µ���ַ"></div>
+<!-- ��˵���ۿ� end -->
+<!-- ��˵����JS���� start (һ����ҳֻ������һ��) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"accagain"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- ��˵����JS���� end -->
+
+<h1 class="title">留言</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://yoursite.com/2015/01/21/Python-02-函数/" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+
+
+  </section>
+
+
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+   
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/Lectures/">Lectures</a><small>1</small></li>
+  
+    <li><a href="/categories/Machine-Learning/">Machine Learning</a><small>3</small></li>
+  
+    <li><a href="/categories/Python/">Python</a><small>2</small></li>
+  
+    <li><a href="/categories/blog/">blog</a><small>1</small></li>
+  
+    <li><a href="/categories/life/">life</a><small>1</small></li>
+  
+    <li><a href="/categories/php/">php</a><small>2</small></li>
+  
+    <li><a href="/categories/《Linux私房菜基础篇》/">《Linux私房菜基础篇》</a><small>1</small></li>
+  
+    <li><a href="/categories/网络编程/">网络编程</a><small>2</small></li>
+  
+  </ul>
+</div>
+
+
+  <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=2&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=3871485516&verifier=4ca01292&dpc=1"></iframe>
+
+  
+<div class="widget tagcloud">
+  <h3 class="title">标签云</h3>
+  <div class="entry">
+    <a href="/tags/Andrew-Ng/" style="font-size: 20.00px;">Andrew Ng</a><a href="/tags/Lecture/" style="font-size: 10.00px;">Lecture</a><a href="/tags/Linux/" style="font-size: 10.00px;">Linux</a><a href="/tags/Machine-Learning/" style="font-size: 20.00px;">Machine Learning</a><a href="/tags/Python/" style="font-size: 15.00px;">Python</a><a href="/tags/article/" style="font-size: 10.00px;">article</a><a href="/tags/blog/" style="font-size: 10.00px;">blog</a><a href="/tags/life/" style="font-size: 10.00px;">life</a><a href="/tags/php/" style="font-size: 15.00px;">php</a><a href="/tags/socket/" style="font-size: 10.00px;">socket</a><a href="/tags/zmq/" style="font-size: 10.00px;">zmq</a><a href="/tags/模拟登陆/" style="font-size: 10.00px;">模拟登陆</a><a href="/tags/私房菜/" style="font-size: 10.00px;">私房菜</a><a href="/tags/网络编程/" style="font-size: 15.00px;">网络编程</a><a href="/tags/鸟哥/" style="font-size: 10.00px;">鸟哥</a>
+  </div>
+</div>
+
+
+  <div class="widget tag">
+<h3 class="title">友情链接</h3>
+<ul class="entry">
+<li><a href="http://www.keepstudying.net/">PrettyDad</a></li>
+<li><a href="http://www.xysay.com/">xysay</a></li>
+<li><a href="http://shallyan.com/">Shallyan</a></li>
+<li><a href="http://www.boblee0717.com/">Boblee</a></li>
+</ul>
+</div>
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 Accagain
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+<a title="返回顶部"><img src="/imgs/scrollup.png"/></a>
+</div>
+<script src="/js/totop.js"></script>
+
+</body>
+</html>
