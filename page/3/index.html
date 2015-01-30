@@ -4,7 +4,7 @@
   <meta name="Accagain" content="Accagain">
   <meta charset="utf-8" >
   
-  <title>Accagain</title>
+  <title>第 3 页 | Accagain</title>
   <meta name="author" content="Accagain">
   
   <meta name="description" content="Accagain&#39;s blog">
@@ -56,33 +56,30 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2015-01-23T10:57:30.000Z"><a href="/2015/01/23/Python-03-模块-面向对象编程/">1月 23 2015</a></time>
+        <time datetime="2014-12-08T10:44:23.000Z"><a href="/2014/12/08/模拟登陆-填调查问卷/">12月 8 2014</a></time>
       
       
   
-    <h1 class="title"><a href="/2015/01/23/Python-03-模块-面向对象编程/">Python 03 模块 &amp;&amp; 面向对象编程</a></h1>
+    <h1 class="title"><a href="/2014/12/08/模拟登陆-填调查问卷/">模拟登陆-填调查问卷</a></h1>
   
 
     </header>
     <div class="entry">
       
         <hr>
-<h2 id="模块"><strong>模块</strong></h2>
+<h3 id="主要用php里面的curl模拟登陆，获取cookie，带着cookie_post数据，模拟批量投调查问卷。">主要用php里面的curl模拟登陆，获取cookie，带着cookie post数据，模拟批量投调查问卷。</h3>
 <ul>
-<li><strong>在Python中，一个.py文件就称之为一个模块(Module)</strong></li>
-<li>使用模块好处<br>　　1、提高了代码可维护性<br>　　2、避免函数名和变量名冲突，主要在编写模块时，尽量不要和内置函数名字冲突</li>
-<li><strong>为了避免模块名字冲突，Python引入了按目录来组织模块的方法，称为包(Package)</strong></li>
-<li><strong>每个包目录下面必须要有个<code>__init__.py</code>文件，这个文件是必须的，否则，Python就把这个目录当成普通目录，而不是一个包</strong></li>
-<li><strong><code>__init__.py</code>本身就是一个模块，而它的模块名就是包名</strong></li>
+<li><h4 id="主要步骤"><code>主要步骤</code></h4>
+1)请求登陆网页得到cookie：<a href="http://adou.wustnews.com:8080/whcc/" target="_blank" rel="external">http://adou.wustnews.com:8080/whcc/</a><br>2)带着cookie post登陆数据[所属单位、院系、学号、姓名]<br>3)带着cookie post问卷答案</li>
 </ul>
-<p>
+<p>PS:<br>注意要先访问登陆网页，得到cookie.不能先post登录信息再获得cookie<br>
       
     </div>
     <footer>
       
         
           <div class="alignleft">
-            <a href="/2015/01/23/Python-03-模块-面向对象编程/#more" class="more-link">Read More</a>
+            <a href="/2014/12/08/模拟登陆-填调查问卷/#more" class="more-link">Read More</a>
           </div>
         
         
@@ -103,30 +100,27 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2015-01-21T08:06:36.000Z"><a href="/2015/01/21/Python-02-函数/">1月 21 2015</a></time>
+        <time datetime="2014-11-21T13:23:47.000Z"><a href="/2014/11/21/Lecture-01/">11月 21 2014</a></time>
       
       
   
-    <h1 class="title"><a href="/2015/01/21/Python-02-函数/">Python 02 函数</a></h1>
+    <h1 class="title"><a href="/2014/11/21/Lecture-01/">Lecture 01</a></h1>
   
 
     </header>
     <div class="entry">
       
         <hr>
-<h2 id="函数_&amp;&amp;_抽象"><strong>函数 &amp;&amp; 抽象</strong></h2>
-<ul>
-<li>计算机程序中，函数就是最基本的一种代码抽象的方式**</li>
-<li>函数名其实就是指向一个函数对象的引用，完全可以把函数名赋给一个变量，相当于给这个函数起了一个别名<br><strong>定义函数</strong><br>　　def 依次写出函数名、括号、括号中的参数和冒号: 然后缩进块中写函数体，函数的返回值用return语句<br>　　def my_abs(x):<br>　　　　if x&gt;=0:<br>　　　　　return x<br>　　　　else：<br>　　　　　return -x</li>
-</ul>
-<p>
+<h3 id="_今早还在空间发说说抱怨北京的雾霾严重、东西贵、吃饭不方便。今晚听完讲座后，觉得自己能提前过来挺值得[至少有更多的时间打造自己]：因为这里有很多大师、牛人，通过向他们学习，能使自己的视野开阔很多，对自己的成长很有利。很幸运。这种机会在武汉绝对是没有的。">　　今早还在空间发说说抱怨北京的雾霾严重、东西贵、吃饭不方便。今晚听完讲座后，觉得自己能提前过来挺值得[至少有更多的时间打造自己]：因为这里有很多大师、牛人，通过向他们学习，能使自己的视野开阔很多，对自己的成长很有利。很幸运。这种机会在武汉绝对是没有的。</h3>
+<h3 id="_最近在计算所听了几场讲座，还是有些感悟和体会，觉得有必要总结下。第一次在大学里，体会到大师云集，充满学术人文氛围。以后要多去听些讲座，听听别人的故事，来启发自己。充分利用这么好的资源，明天周六去国家图书馆走一遭。">　　最近在计算所听了几场讲座，还是有些感悟和体会，觉得有必要总结下。第一次在大学里，体会到大师云集，充满学术人文氛围。以后要多去听些讲座，听听别人的故事，来启发自己。充分利用这么好的资源，明天周六去国家图书馆走一遭。</h3>
+
       
     </div>
     <footer>
       
         
           <div class="alignleft">
-            <a href="/2015/01/21/Python-02-函数/#more" class="more-link">Read More</a>
+            <a href="/2014/11/21/Lecture-01/#more" class="more-link">Read More</a>
           </div>
         
         
@@ -147,27 +141,24 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2015-01-21T07:18:43.000Z"><a href="/2015/01/21/Python-01-基本语法/">1月 21 2015</a></time>
+        <time datetime="2014-11-11T12:54:27.000Z"><a href="/2014/11/11/《Linux私房菜基础篇》—01-Linux的规则与安装/">11月 11 2014</a></time>
       
       
   
-    <h1 class="title"><a href="/2015/01/21/Python-01-基本语法/">Python 01 基本语法</a></h1>
+    <h1 class="title"><a href="/2014/11/11/《Linux私房菜基础篇》—01-Linux的规则与安装/">《Linux私房菜基础篇》—01 Linux的规则与安装</a></h1>
   
 
     </header>
     <div class="entry">
       
         <hr>
-<h2 id="Python简介"><strong>Python简介</strong></h2>
+<h3 id="_实习被安排的第一件事是在服务器端部署代码，所以就把鸟哥的私房菜拿出来读一读，顺便回顾下操作系统的知识。这两天把博客搭起来了，就在这上面做做笔记。">　　实习被安排的第一件事是在服务器端部署代码，所以就把鸟哥的私房菜拿出来读一读，顺便回顾下操作系统的知识。这两天把博客搭起来了，就在这上面做做笔记。</h3>
 <ul>
-<li>Python：一种解释型、面向对象的、带有动态语义的高级程序设计语言。</li>
-<li><p>侧重于写应用，功能较强大，注重解决问题。</p>
-</li>
-<li><p>变量(varible)、函数(function)、模块(module)</p>
-</li>
-<li><p>Python 3 不向下兼容Python 2.5,所以Python2和Python3还有好多不同，python是大小写敏感的。</p>
+<li><h2 id="各硬件设备在Linux中的文件名"><code>各硬件设备在Linux中的文件名</code></h2>
 </li>
 </ul>
+<p>在linux系统中，每个设备都被当成一个文件来对待。需要特别留意的是硬盘（IDE，SCSI，USB都一样），每个磁盘驱动器的磁盘分区（partition)不同，其磁盘文件名还会改变。</p>
+<p><img src="http://ww3.sinaimg.cn/large/e6c22e4cjw1em7fp0xwhfj20ek082my0.jpg" alt=""></p>
 
       
     </div>
@@ -175,7 +166,7 @@
       
         
           <div class="alignleft">
-            <a href="/2015/01/21/Python-01-基本语法/#more" class="more-link">Read More</a>
+            <a href="/2014/11/11/《Linux私房菜基础篇》—01-Linux的规则与安装/#more" class="more-link">Read More</a>
           </div>
         
         
@@ -196,66 +187,29 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2015-01-16T07:09:22.000Z"><a href="/2015/01/16/《Machine-Learning》-03-Linear-Regression-with-multiple-variables/">1月 16 2015</a></time>
+        <time datetime="2014-11-10T10:17:13.000Z"><a href="/2014/11/10/hello-world/">11月 10 2014</a></time>
       
       
   
-    <h1 class="title"><a href="/2015/01/16/《Machine-Learning》-03-Linear-Regression-with-multiple-variables/">《Machine Learning》-03 Linear Regression with multiple variables</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <hr>
-<h2 id="Multiple_features"><strong>Multiple features</strong></h2>
-<p>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2015/01/16/《Machine-Learning》-03-Linear-Regression-with-multiple-variables/#more" class="more-link">Read More</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2015-01-15T07:45:54.000Z"><a href="/2015/01/15/《Machine-Learning》-02-Linear-Regression-with-One-Variable/">1月 15 2015</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2015/01/15/《Machine-Learning》-02-Linear-Regression-with-One-Variable/">《Machine Learning》-02 Linear Regression with One Variable</a></h1>
+    <h1 class="title"><a href="/2014/11/10/hello-world/">Hello World</a></h1>
   
 
     </header>
     <div class="entry">
       
         <hr>
-<h2 id="[Model_representation]"><strong><code>[Model representation]</code></strong></h2>
-<p><img src="http://ww2.sinaimg.cn/large/e6c22e4cgw1eob5q622a3j20cd03kt9j.jpg" alt=""><br>
+<h3 id="hey,you_guys_!">hey,you guys !</h3>
+<h3 id="glad_to_meet_here_!">glad to meet here !</h3>
+<h3 id="enjoy_the_communications_and_do_better_!">enjoy the communications and do better !</h3>
+<h3 id="2014-11-10">2014.11.10</h3>
+ 
       
     </div>
     <footer>
       
         
           <div class="alignleft">
-            <a href="/2015/01/15/《Machine-Learning》-02-Linear-Regression-with-One-Variable/#more" class="more-link">Read More</a>
+            <a href="/2014/11/10/hello-world/#more" class="more-link">Read More</a>
           </div>
         
         
@@ -273,8 +227,8 @@
 
 <nav id="pagination">
   
+    <a href="/page/2/" class="alignleft prev">上一页</a>
   
-    <a href="/page/2/" class="alignright next">下一页</a>
   
   <div class="clearfix"></div>
 </nav></div></div>
