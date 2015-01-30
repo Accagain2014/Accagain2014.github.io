@@ -1,0 +1,291 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta name="Accagain" content="Accagain">
+  <meta charset="utf-8" >
+  
+  <title>Python 03 模块 &amp;&amp; 面向对象编程 | Accagain</title>
+  <meta name="author" content="Accagain">
+  
+  <meta name="description" content="Accagain&#39;s blog">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Python 03 模块 &amp;&amp; 面向对象编程"/>
+  <meta property="og:site_name" content="Accagain"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.ico" rel="icon" type="image/x-ico">
+  <link rel="alternate" href="/atom.xml" title="Accagain" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Accagain</a></h1>
+  <h2><a href="/">Enjoy the communications and do better ! ---- cms</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">主页</a></li>
+    
+      <li><a href="/archives">归档</a></li>
+    
+      <li><a href="/about">关于</a></li>
+    
+      <li><a href="/csdn">我的CSDN博客</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2015-01-23T10:57:30.000Z"><a href="/2015/01/23/Python-03-模块-面向对象编程/">1月 23 2015</a></time>
+      
+      
+  
+    <h1 class="title">Python 03 模块 &amp;&amp; 面向对象编程</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <hr>
+<h2 id="模块"><strong>模块</strong></h2>
+<ul>
+<li><strong>在Python中，一个.py文件就称之为一个模块(Module)</strong></li>
+<li>使用模块好处<br>　　1、提高了代码可维护性<br>　　2、避免函数名和变量名冲突，主要在编写模块时，尽量不要和内置函数名字冲突</li>
+<li><strong>为了避免模块名字冲突，Python引入了按目录来组织模块的方法，称为包(Package)</strong></li>
+<li><strong>每个包目录下面必须要有个<code>__init__.py</code>文件，这个文件是必须的，否则，Python就把这个目录当成普通目录，而不是一个包</strong></li>
+<li><strong><code>__init__.py</code>本身就是一个模块，而它的模块名就是包名</strong></li>
+</ul>
+<p><a id="more"></a></p>
+<ul>
+<li>sys模块有一个argv变量，用list存储了命令行的所有参数，argv的第一个元素是该.py文件<br><img src="http://ww1.sinaimg.cn/large/e6c22e4cgw1eojogzq2k4j20c309dgmr.jpg" alt=""></li>
+<li><strong>命令行运行模块文件时，Python解释器把一个特殊变量<code>__name__</code>置为<code>__main__</code>,而如果在其他地方导入该模块时，if判断将失效。所以，可以用这种if让一个模块通过命令行运行同时执行一些额外的代码(比如测试)</strong></li>
+</ul>
+<h2 id="别名"><strong>别名</strong></h2>
+<ul>
+<li><strong>导入模块时，可以使用别名，从而在运行时根据当前环境选择最合适的模块</strong></li>
+<li><strong>Python是动态语言，函数签名一致接口就一样，无论导入哪个模块后续代码都能正常工作</strong></li>
+</ul>
+<h2 id="作用域"><strong>作用域</strong></h2>
+<ul>
+<li><code>__</code>前缀函数和变量仅在模块内部使用，正常的函数和变量名是公开的(public)</li>
+<li><strong>类似<code>__xx__</code>这样的变量是特殊变量，可以被直接引用，但是有特殊用途</strong></li>
+<li><strong>类似<code>_xxx</code>和<code>__xxx</code>这样的函数或变量是非公开的(private),不应该被直接引用。</strong></li>
+<li><strong>外部不需要引用的函数全部定义成private,只有外部需要引用的函数才定义为public.</strong></li>
+</ul>
+<h2 id="安装第三方模块"><strong>安装第三方模块</strong></h2>
+<ul>
+<li><strong>第三方库都会在Python官方网站注册，要安装一个第三方库，必须先知道该库的名称，可以在官网或者pypi上搜索，比如Python Imaging Library的名称叫PIL，因此安装该库：easy_install PIL</strong></li>
+<li><strong>模块搜索路径</strong><br>　　搜索路径存放在sys模块的path变量中(sys.path)<br>　　添加自己的搜索目录：<br>　　　　1、sys.path.appedn(‘<em>*</em>‘):这种方法是在运行时修改，运行结束后失效<br>　　　　2、设置环境变量PYTHONPATH,该环境变量的内容会被自动添加到模块搜索路径中。</li>
+<li><strong>Python提供了<strong>future</strong>模块,把下一个新版本的特性导入到当前版本，于是就可以在当前版本中测试一些新版本的特性。</strong></li>
+</ul>
+<h2 id="面向对象编程"><strong>面向对象编程</strong></h2>
+<ul>
+<li><strong>面向对象的程序设计把计算机程序视为一组对象的集合，而每个对象都可以接收其他对象发过来的消息，并处理这些消息，计算机程序的执行就是一系列消息在各个对象之间传递。封装，继承，多态</strong></li>
+<li><strong>Python中，所有数据类型都可以视为对象。面向对象的抽象程度又比函数更高，因为一个Class既包含数据，又包含操作数据的方法。</strong><br><img src="http://ww1.sinaimg.cn/large/e6c22e4cjw1eorn3nsikfj207001f748.jpg" alt=""><br>student是类名，类名通常是大写开头的单词，紧接着是(object),表示该类从哪个类继承下来，通常如果没有合适的继承类，就使用object类，这是所有类最终都会继承的类。</li>
+<li>由于类可以起到模板的作用，因此，可以在创建实例的时候，把一些认为必须绑定的属性强制填写进去。通过定义一个特殊的<code>__init__</code>方法，在创建实例的时候，就把name,score等属性绑上去。</li>
+<li><strong><code>__init__</code>方法的第一个参数是self,表示创建的实例本身.有了<strong>init</strong>方法,在创建实例的时候,就不能传入空的参数了,必须传入与<code>__init__</code>方法匹配的参数,但self不用传,Python解释器自己会把实例变量传进去:</strong></li>
+<li><strong>和普通函数相比,在类中定义的函数只有点不同,就是第一个参数永远是实例变量self,并且调用时,不用传递该参数.</strong></li>
+<li><strong>类是创建实例的模板,而实例则是一个一个具体的对象,各个实例拥有的数据都互相独立,互不影响.方法就是与实例绑定的函数,和普通函数不同,方法可以直接访问实例的数据.通过在实例上调用方法,我们就直接操作了对象内部的数据,但无需知道方法内部的实现细节.</strong></li>
+<li><strong>和静态语言不同,Python允许对实例变量绑定任何数据,也就是说,对于两个实例变量,虽然它们都是同一个类的不同实例,但拥有的变量名称都可能不同.</strong></li>
+</ul>
+<h2 id="访问限制"><strong>访问限制</strong></h2>
+<ul>
+<li>在Class内部,可以有属性和方法,而外部代码可以通过直接调用实例变量的方法来操作数据,这样,就隐藏了内部的复杂逻辑.</li>
+<li><strong>如果要让内部属性不被外部访问,可以把属性的名称前加上两个下划线<code>__</code>,变成私有变量(private)</strong></li>
+<li><strong>注意特殊变量<code>__a__</code>可以直接访问,以一个下划线开头的变量,外部可以访问,但按照约定俗成的规定,当看到这个变量时,这样理解:”请把我视为私有变量,不要随意访问.”</strong></li>
+</ul>
+<h2 id="继承和多态"><strong>继承和多态</strong></h2>
+<ul>
+<li><strong>继承好处：1.最大的好处是子类获得了父类的全部功能.　　2.多态：子类的方法覆盖了父类的同名方法,在代码运行的时候,总是会调用子类的方法.</strong></li>
+<li><strong>在继承关系中,如果一个实例的数据类型是某个子类,那它的数据类型也可以被看做是父类,但是反过来就不行.</strong></li>
+<li><strong>对于一个变量,只需要知道它是Animal类型,无需确切地知道它的子类型,就可以放心地调用run()方法,而具体调用的run()方法作用在Animal、Dog还是Cat上,由运行时该对象的确切类型决定,这就是多态真正的威力:调用方只管调用,不管细节.</strong></li>
+<li><strong>著名的‘开闭’原则：</strong><br>　　　<strong>对扩展开放:允许新增子类.</strong><br>　　　<strong>对修改封闭:不需要修改依赖Animal类型的函数等.</strong></li>
+<li><strong>有了继承,才能有多态.在调用类实例方法的时候,尽量把变量视作父类类型,这样所有子类类型都可以正常被接受.</strong></li>
+<li><strong>旧的方式定义Python类允许不从object类继承,不推荐,任何时候,如果没有合适的类可以继承,就继承自object类.</strong></li>
+</ul>
+<h2 id="获取对象信息"><strong>获取对象信息</strong></h2>
+<ul>
+<li>type()函数</li>
+<li>type()函数返回type类型<br><img src="http://ww3.sinaimg.cn/large/e6c22e4cjw1eorvwov4iwj20cp08rwfm.jpg" alt=""></li>
+<li><strong>TypeType,所有类型本身的类型就是TypeType</strong></li>
+<li><strong>isinstance()判断一个对象是否是该类型本身,或者位于该类型的父继承链上.</strong></li>
+<li><strong>isinstance()还可以判断一个变量是否是某些类型的一种</strong><br><img src="http://ww2.sinaimg.cn/large/e6c22e4cjw1eorw5o5hmlj20c001eaa5.jpg" alt=""></li>
+<li><strong>dir():获取一个对象的所有属性和方法,返回一个包含字符串的list.</strong><br><img src="http://ww1.sinaimg.cn/large/e6c22e4cgw1eorw8fctkgj20n409l439.jpg" alt=""></li>
+<li>类似<code>__xxx__</code>的属性和方法在Python中都是有特殊用途的,比如<code>__len__</code>方法返回长度.在Python中,如果你调用len()函数试图获取一个对象的长度,实际上,在len()函数内部,它自动调用该对象的<code>__len__()</code>方法.</li>
+<li><strong>hasattr(obj,’x’):判断obj对象是否有x属性;　setattr(obj,’x’,19):设置obj对象的x属性；　getattr(obj,’x’):获取属性’x’. getattr(obj,’x’,404):获取属性x,如果不存在返回默认值404</strong></li>
+</ul>
+<p>　</p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/Python/">Python</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/Python/">Python</a>
+  </div>
+
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+
+<!-- ��˵���ۿ� start -->
+	<div class="ds-thread" data-thread-key="�뽫�˴��滻������������վ���е�ID" data-title="���滻�����µı���" data-url="���滻�����µ���ַ"></div>
+<!-- ��˵���ۿ� end -->
+<!-- ��˵����JS���� start (һ����ҳֻ������һ��) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"accagain"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- ��˵����JS���� end -->
+
+<h1 class="title">留言</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://yoursite.com/2015/01/23/Python-03-模块-面向对象编程/" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+
+
+  </section>
+
+
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+   
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/Lectures/">Lectures</a><small>1</small></li>
+  
+    <li><a href="/categories/Machine-Learning/">Machine Learning</a><small>3</small></li>
+  
+    <li><a href="/categories/Python/">Python</a><small>3</small></li>
+  
+    <li><a href="/categories/blog/">blog</a><small>1</small></li>
+  
+    <li><a href="/categories/life/">life</a><small>1</small></li>
+  
+    <li><a href="/categories/php/">php</a><small>2</small></li>
+  
+    <li><a href="/categories/《Linux私房菜基础篇》/">《Linux私房菜基础篇》</a><small>1</small></li>
+  
+    <li><a href="/categories/网络编程/">网络编程</a><small>2</small></li>
+  
+  </ul>
+</div>
+
+
+  <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=2&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=3871485516&verifier=4ca01292&dpc=1"></iframe>
+
+  
+<div class="widget tagcloud">
+  <h3 class="title">标签云</h3>
+  <div class="entry">
+    <a href="/tags/Andrew-Ng/" style="font-size: 20.00px;">Andrew Ng</a><a href="/tags/Lecture/" style="font-size: 10.00px;">Lecture</a><a href="/tags/Linux/" style="font-size: 10.00px;">Linux</a><a href="/tags/Machine-Learning/" style="font-size: 20.00px;">Machine Learning</a><a href="/tags/Python/" style="font-size: 20.00px;">Python</a><a href="/tags/article/" style="font-size: 10.00px;">article</a><a href="/tags/blog/" style="font-size: 10.00px;">blog</a><a href="/tags/life/" style="font-size: 10.00px;">life</a><a href="/tags/php/" style="font-size: 15.00px;">php</a><a href="/tags/socket/" style="font-size: 10.00px;">socket</a><a href="/tags/zmq/" style="font-size: 10.00px;">zmq</a><a href="/tags/模拟登陆/" style="font-size: 10.00px;">模拟登陆</a><a href="/tags/私房菜/" style="font-size: 10.00px;">私房菜</a><a href="/tags/网络编程/" style="font-size: 15.00px;">网络编程</a><a href="/tags/鸟哥/" style="font-size: 10.00px;">鸟哥</a>
+  </div>
+</div>
+
+
+  <div class="widget tag">
+<h3 class="title">友情链接</h3>
+<ul class="entry">
+<li><a href="http://www.keepstudying.net/">PrettyDad</a></li>
+<li><a href="http://www.xysay.com/">xysay</a></li>
+<li><a href="http://shallyan.com/">Shallyan</a></li>
+<li><a href="http://www.boblee0717.com/">Boblee</a></li>
+</ul>
+</div>
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 Accagain
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+<a title="返回顶部"><img src="/imgs/scrollup.png"/></a>
+</div>
+<script src="/js/totop.js"></script>
+
+</body>
+</html>
