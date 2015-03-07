@@ -5,7 +5,7 @@
   <meta name="Accagain" content="Accagain">
   <meta charset="utf-8" >
   
-  <title>Lecture 01 | Accagain</title>
+  <title>Python 07 正则表达式 | Accagain</title>
   <meta name="author" content="Accagain">
   
   <meta name="description" content="Accagain&#39;s blog">
@@ -13,7 +13,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="Lecture 01"/>
+  <meta property="og:title" content="Python 07 正则表达式"/>
   <meta property="og:site_name" content="Accagain"/>
 
   
@@ -56,67 +56,58 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2014-11-21T13:23:47.000Z"><a href="/2014/11/21/Lecture-01/">11月 21 2014</a></time>
+        <time datetime="2015-03-07T05:22:52.000Z"><a href="/2015/03/07/Python-07-正则表达式/">3月 7 2015</a></time>
       
       
   
-    <h1 class="title">Lecture 01</h1>
+    <h1 class="title">Python 07 正则表达式</h1>
   
 
     </header>
     <div class="entry">
       
         <hr>
-<h3 id="_今早还在空间发说说抱怨北京的雾霾严重、东西贵、吃饭不方便。今晚听完讲座后，觉得自己能提前过来挺值得[至少有更多的时间打造自己]：因为这里有很多大师、牛人，通过向他们学习，能使自己的视野开阔很多，对自己的成长很有利。很幸运。这种机会在武汉绝对是没有的。">　　今早还在空间发说说抱怨北京的雾霾严重、东西贵、吃饭不方便。今晚听完讲座后，觉得自己能提前过来挺值得[至少有更多的时间打造自己]：因为这里有很多大师、牛人，通过向他们学习，能使自己的视野开阔很多，对自己的成长很有利。很幸运。这种机会在武汉绝对是没有的。</h3>
-<h3 id="_最近在计算所听了几场讲座，还是有些感悟和体会，觉得有必要总结下。第一次在大学里，体会到大师云集，充满学术人文氛围。以后要多去听些讲座，听听别人的故事，来启发自己。充分利用这么好的资源，明天周六去国家图书馆走一遭。">　　最近在计算所听了几场讲座，还是有些感悟和体会，觉得有必要总结下。第一次在大学里，体会到大师云集，充满学术人文氛围。以后要多去听些讲座，听听别人的故事，来启发自己。充分利用这么好的资源，明天周六去国家图书馆走一遭。</h3>
-<a id="more"></a>
-
-<h2 id="2014年11月20日_万达前CEO传奇人物_龚义涛">2014年11月20日 万达前CEO传奇人物 龚义涛</h2>
-<p><img src="http://ww3.sinaimg.cn/large/e6c22e4cgw1emizgqjs1tj21kw16owrj.jpg" alt=""><br><strong><a href="http://itjuzi.com/person/9443" target="_blank" rel="external">人物介绍</a></strong><br>华科本科-&gt;清华硕士-&gt;哥伦比亚硕士-&gt;google总部-&gt;阿里巴巴-&gt;万达CEO-&gt;创办万江龙网络公司</p>
-<h3 id="他主要讲了些创业方面的事情。我觉得有几点还是自己第一次听说，值得思考。">他主要讲了些创业方面的事情。我觉得有几点还是自己第一次听说，值得思考。</h3>
+<h2 id="正则表达式"><strong>正则表达式</strong></h2>
 <ul>
-<li><h4 id="两个机遇"><code>两个机遇</code></h4>
-1)城镇化的浪潮<br>2)传统企业的互联网渗透</li>
+<li>正则表达式是一种用来匹配字符串的强有力的武器。它的设计思想是用一种描述性的语言来给字符串定义一个规则，凡是符合规则的字符串，就称为“匹配”了，否则该字符串就是不合法的。</li>
+<li><code>\d</code>    匹配一个数字</li>
+<li><code>\w</code>    匹配一个字母或数字</li>
+<li><code>*</code>    表示任意个字符(包括0个)</li>
+<li><code>+</code>    表示至少一个</li>
 </ul>
+<p><a id="more"></a></p>
 <ul>
-<li><h4 id="创业要点"><code>创业要点</code></h4>
-1)无所畏惧<br>2)选准方向<br>3)团队组建、建设<br>4)商业模式创新<br>5)盈利模式</li>
+<li><code>?</code>    表示0个或1个字符</li>
+<li><code>{n}</code>    表示n个字符</li>
+<li><code>{n,m}</code>    表示n-m个字符</li>
+<li><code>\s</code>    可以匹配一个空格(也包括Tab等空白符)</li>
+<li><code>\d{3}\s+\d{3,8}</code>    匹配以任意个空格隔开的带区号的电话号码</li>
+<li><code>\d{3}\-\d{3,8}</code>    匹配以<code>-</code>分隔开的两个数字</li>
+<li><code>[0-9a-zA-Z\_]</code>    匹配一个数字、字母或者下划线</li>
+<li><code>[0-9a-zA-Z\_]+</code>    可以匹配至少由一个数字、字母或下划线组成的字符串</li>
+<li><code>[a-zA-Z\_][0-9a-zA-Z\_]*</code>    可以匹配由字母或下划线开头，后接一个数字、字母或者下划线组成的字符串，也就是Python合法的变量</li>
+<li><code>[a-zA-Z\_][0-9a-zA-Z\_</code>{0,19}    更精确地限制了变量的长度是1-20个字符</li>
+<li><code>A|B</code>    可以匹配A或B <code>[P|p]ython</code>    可以匹配’Python’或者’python’</li>
+<li><code>^</code>    表示行的开头，<code>^\d</code>表示必须以数字开头</li>
+<li><code>$</code>    表示行的结束，<code>\d$</code>表示必须以数字结束</li>
 </ul>
+<h2 id="re模块"><strong>re模块</strong></h2>
 <ul>
-<li><h4 id="公司的管理"><code>公司的管理</code></h4>
-1)要始终明白公司是干什么的<br>2)充分考虑员工的培养、成长</li>
+<li>Python提供<code>re</code>模块，包含所有正则表达式的功能。<strong>Python的字符串本身也用<code>\</code>转义，所以用r前缀</strong></li>
+<li>match()方法匹配成功，返回一个Match对象，否则返回None<br><img src="http://ww2.sinaimg.cn/large/e6c22e4cjw1epx4jgpog3j20f406jaax.jpg" alt=""></li>
+<li>用正则表达式切分字符串比用固定的字符更灵活<br><img src="http://ww4.sinaimg.cn/large/e6c22e4cjw1epx4oskqemj20fi059jsf.jpg" alt=""></li>
 </ul>
+<h2 id="分组"><strong>分组</strong></h2>
 <ul>
-<li><h4 id="给创业者的忠告"><code>给创业者的忠告</code></h4>
-<strong>1)伟大的追求【你要清楚马云当时在创办淘宝时他的追求是今天淘宝规模的十倍以上】</strong><br><strong>2)成就员工【让员工有归属感，能对你的企业高度认可】</strong></li>
+<li>除了简单地判断是否匹配之外，正则表达式还有提取子串的强大功能。用<code>()</code>表示的就是要提取的分组(Group)</li>
+<li><code>(\d{3})-(\d{3,8})$</code>    分别定义了两个组，可以直接从匹配的字符串中提取出区号和本地号码.<strong>group(0)永远是原始字符串</strong><br><img src="http://ww2.sinaimg.cn/large/e6c22e4cgw1epx5a0bhpsj20i705rdh6.jpg" alt=""></li>
+<li><strong>正则匹配默认是贪婪匹配，也就是匹配尽可能多的字符。加上问好就是非贪婪匹配了。</strong><br><img src="http://ww4.sinaimg.cn/large/e6c22e4cjw1epx5hcboxcj20ia05d75e.jpg" alt=""></li>
 </ul>
+<h2 id="编译"><strong>编译</strong></h2>
 <ul>
-<li><h4 id="给学生的忠告"><code>给学生的忠告</code></h4>
-<strong>1)你自己能领悟到要知道干什么</strong><br><strong>2)工程师的自我推销，不仅自己要有过硬的本领，更要让别人知道你能干，能给你机会</strong><br><strong>3)你的发展要自己把握</strong></li>
-</ul>
-<ul>
-<li><h4 id="推荐书籍"><code>推荐书籍</code></h4>
-《创业者的两难》<br>《zero to one》<br>《鸿沟》<br>《一百年的创业历史》</li>
-</ul>
-<ul>
-<li><h4 id="总结与思考"><code>总结与思考</code></h4>
-龚义涛为什么能这么牛，他的大学是怎么度过的呢？</li>
-</ul>
-<hr>
-<h2 id="2014年11月21日_前外交部参赞">2014年11月21日 前外交部参赞</h2>
-<p><img src="http://ww3.sinaimg.cn/large/e6c22e4cgw1emizke52etj21kw23uatk.jpg" alt=""></p>
-<h3 id="_外交部参赞从他访问过40多个国家的体会和感受，给我们讲解了世界眼中的中国以及中国的外交的内容，感觉收获很大，很多国外的东西之前都没深入思考过，只是从报纸上媒体上了解过，但这很多都不真实。听了讲座后，视野更开阔，了解的知识也更多。">　　外交部参赞从他访问过40多个国家的体会和感受，给我们讲解了世界眼中的中国以及中国的外交的内容，感觉收获很大，很多国外的东西之前都没深入思考过，只是从报纸上媒体上了解过，但这很多都不真实。听了讲座后，视野更开阔，了解的知识也更多。</h3>
-<ul>
-<li><h4 id="说的比较好的话"><code>说的比较好的话</code></h4>
-1）心灵和身体至少要有一个在路上<br>2）大学：人文精神的大本营。绝非仅仅传授一技之长，更重要的是价值、人格、学术和职业精神<br>3）在中国的尖端领域有一己之力<br>4）学好外语，了解世界<br>5）理性、自信、奋斗<br>6）教师的影响巨大，最担心的是中国的教育<br>7）爱国：从大处着眼，从小处做起</li>
-</ul>
-<ul>
-<li><h4 id="思考与总结"><code>思考与总结</code></h4>
-<p><strong>通过外交家的讲解和举例，我了解到很多东西必须有自己的思考、思想，决不能从流。很多东西，并不是媒体、舆论宣传的那样。</strong><br>1）培养独立思考的能力，辨别新闻的真假（美国护照上，写着无论你走到哪里，美国永远是你的坚强的后盾。怎么可能？）<br>2）一个不了解自己国家的人，走到哪里都将被藐视<br>3）没有人的情感，就没有对自然真理的追求</p>
-</li>
-<li><h4 id="提到的书籍和资料"><code>提到的书籍和资料</code></h4>
-<p>《西藏青年》<br>《当中国统治世界》<br>《2010延安习大大访谈》<br>《辽宁日报：老师你们不要说中国》<br>《货币战争》</p>
-</li>
+<li>在Python中使用正则表达式时，re模块内部会干两件事：1.编译正则表达式，如果正则表达式的字符串本身不合法，会报错。2.用编译后的正则表达式去匹配字符串。</li>
+<li><strong>如果一个正则表达式要重复使用几千次，出于效率的考虑，可以预编译该正则表达式，接下来重复使用时就不需要编译这个步骤了，直接匹配：</strong><br><img src="http://ww1.sinaimg.cn/large/e6c22e4cgw1epx5nvf7naj20hj05xabj.jpg" alt=""></li>
+<li><strong>编译后生成Regular Expression对象，由于该对象自己包含了正则表达式，所以调用对应的方法时不用给出正则字符串。</strong></li>
 </ul>
 
       
@@ -126,13 +117,13 @@
         
   
   <div class="categories">
-    <a href="/categories/Lectures/">Lectures</a>
+    <a href="/categories/Python/">Python</a>
   </div>
 
         
   
   <div class="tags">
-    <a href="/tags/Lecture/">Lecture</a>, <a href="/tags/Lecture/">Lecture</a>
+    <a href="/tags/Python/">Python</a>, <a href="/tags/正则表达/">正则表达</a>
   </div>
 
         
@@ -176,7 +167,7 @@ var duoshuoQuery = {short_name:"accagain"};
   }(document, 'script', 'facebook-jssdk'));
 </script>
 
-<div class="fb-comments" data-href="http://yoursite.com/2014/11/21/Lecture-01/" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+<div class="fb-comments" data-href="http://yoursite.com/2015/03/07/Python-07-正则表达式/" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
       
   
 
