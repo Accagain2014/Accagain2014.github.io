@@ -5,7 +5,7 @@
   <meta name="Accagain" content="Accagain">
   <meta charset="utf-8" >
   
-  <title>《Machine Learning》-02 Linear Regression with One Variable | Accagain</title>
+  <title>九种排序算法实现[C/C++] | Accagain</title>
   <meta name="author" content="Accagain">
   
   <meta name="description" content="Accagain&#39;s blog">
@@ -13,7 +13,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="《Machine Learning》-02 Linear Regression with One Variable"/>
+  <meta property="og:title" content="九种排序算法实现[C/C++]"/>
   <meta property="og:site_name" content="Accagain"/>
 
   
@@ -56,25 +56,42 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2015-01-15T07:45:54.000Z"><a href="/2015/01/15/《Machine-Learning》-02-Linear-Regression-with-One-Variable/">1月 15 2015</a></time>
+        <time datetime="2015-03-14T09:03:03.000Z"><a href="/2015/03/14/九种排序实现-C-C/">3月 14 2015</a></time>
       
       
   
-    <h1 class="title">《Machine Learning》-02 Linear Regression with One Variable</h1>
+    <h1 class="title">九种排序算法实现[C/C++]</h1>
   
 
     </header>
     <div class="entry">
       
         <hr>
-<h2 id="[Model_representation]"><strong><code>[Model representation]</code></strong></h2>
-<p><img src="http://ww2.sinaimg.cn/large/e6c22e4cgw1eob5q622a3j20cd03kt9j.jpg" alt=""><br><a id="more"></a><br><img src="http://ww2.sinaimg.cn/large/e6c22e4cjw1eob5nu794vj20d809v0tn.jpg" alt="模型描述"><br><strong>H(Hypothesis):假设函数</strong><br><strong>Size of house:输入X</strong><br><strong>Estimated price:输出Y</strong></p>
-<h2 id="[Cost_function]"><strong><code>[Cost function]</code></strong></h2>
-<p><img src="http://ww4.sinaimg.cn/large/e6c22e4cjw1eob5xlyr7kj20ak09h3z9.jpg" alt="整体流程"><br><img src="http://ww1.sinaimg.cn/large/e6c22e4cjw1eob5ze77x8j20h20at0v2.jpg" alt="代价函数的轮廓图"><br><img src="http://ww1.sinaimg.cn/large/e6c22e4cjw1eob61svixgj20nc0avn0f.jpg" alt="假设函数和代价函数对应关系"></p>
-<h2 id="[Gradient_descent]"><strong><code>[Gradient descent]</code></strong></h2>
-<p><strong>梯度下降算法:</strong><br><img src="http://ww2.sinaimg.cn/large/e6c22e4cjw1eob69aj1i0j20hw08ymze.jpg" alt="算法概述"><br><img src="http://ww4.sinaimg.cn/large/e6c22e4cjw1eob6a42vfvj20lu0abq6b.jpg" alt="算法直观图"><br><img src="http://ww3.sinaimg.cn/large/e6c22e4cjw1eob6bagj54j20np0d5aeq.jpg" alt="算法过程"></p>
-<p><strong>θ0 θ1需要同时更新</strong><br><strong>α为Learning rate:步长</strong><br>　　α(&gt;0)learning rate：basically controls how big a step we take downhill with gradient descent local<br><strong>α不能过大，也不能过小：</strong><br><img src="http://ww4.sinaimg.cn/large/e6c22e4cgw1eob6ewido9j20mx0cvdiq.jpg" alt=""><br><img src="http://ww4.sinaimg.cn/large/e6c22e4cjw1eob6gywrhrj20mv0cdae0.jpg" alt=""><br><strong>α可以不必改。可能有多个局部最小值。</strong></p>
-<p><img src="http://ww4.sinaimg.cn/large/e6c22e4cjw1eob6jylqi0j20lo09ljth.jpg" alt=""><br><strong>对于这种线性回归只有一个最小值。</strong><br><img src="http://ww1.sinaimg.cn/large/e6c22e4cjw1eob6miie3gj20kp08gq4v.jpg" alt=""><br><strong>对于每一步都要使用所有的训练集，时间复杂度很高。</strong></p>
+<h3 id="_最近抽空把九种常见的排序算法用C/C++实现了一下，巩固下基础，以后忘记了还可以来瞅瞅哈哈~^_^。github-al&amp;ds-Fork"><strong>　　最近抽空把九种常见的排序算法用C/C++实现了一下，巩固下基础，以后忘记了还可以来瞅瞅哈哈~^_^。<a href="https://github.com/Accagain2014/al-ds/tree/master/sort" target="_blank" rel="external">github-al&amp;ds-Fork</a></strong></h3>
+<p><strong>推荐网站：</strong><a href="http://blog.chinaunix.net/uid-28458801-id-3760786.html" target="_blank" rel="external">http://blog.chinaunix.net/uid-28458801-id-3760786.html</a></p>
+<p><a id="more"></a></p>
+<h2 id="一、Bubblesort-冒泡排序"><strong>一、Bubblesort-冒泡排序</strong></h2>
+<hr>
+<p><a href="https://github.com/Accagain2014/al-ds/blob/master/sort/bubblesort.cpp" target="_blank" rel="external"><strong>代码</strong></a></p>
+<iframe src="http://player.youku.com/player.php/sid/XMjU4MTg3MTU2/v.swf" type="application/x-shockwave-flash" width="550" height="400" quality="high" allowfullscreen="true"></iframe><br><strong>冒泡排序形象图</strong><br><img src="http://jbcdn2.b0.upaiyun.com/2012/01/Visual-and-intuitive-feel-of-7-common-sorting-algorithms5.gif" alt=""><br><br>## <strong>二、Shellsort-希尔排序</strong><br>——-<br><a href="https://github.com/Accagain2014/al-ds/blob/master/sort/shellsort.cpp" target="_blank" rel="external"><strong>代码</strong></a><br><iframe src="http://player.youku.com/player.php/sid/XMjU4NTcwMDIw/v.swf" type="application/x-shockwave-flash" width="550" height="400" quality="high" allowfullscreen="true"></iframe><br><strong>希尔排序形象图</strong><br><img src="http://jbcdn2.b0.upaiyun.com/2012/01/Visual-and-intuitive-feel-of-7-common-sorting-algorithms6.gif" alt=""><br><br>## <strong>三、Selectsort-选择排序</strong><br>———<br><a href="https://github.com/Accagain2014/al-ds/blob/master/sort/selectsort.cpp" target="_blank" rel="external"><strong>代码</strong></a><br><iframe src="http://player.youku.com/player.php/sid/XMjU4NTY5NTcy/v.swf" type="application/x-shockwave-flash" width="550" height="400" quality="high" allowfullscreen="true"></iframe><br><strong>选择排序形象图</strong><br><img src="http://jbcdn2.b0.upaiyun.com/2012/01/Visual-and-intuitive-feel-of-7-common-sorting-algorithms4.gif" alt=""><br><br>## <strong>四、Insertsort-插入排序</strong><br>———<br><a href="https://github.com/Accagain2014/al-ds/blob/master/sort/insertsort.cpp" target="_blank" rel="external"><strong>代码</strong></a><br><iframe src="http://player.youku.com/player.php/sid/XMjU4NTY5MzEy/v.swf" type="application/x-shockwave-flash" width="550" height="400" quality="high" allowfullscreen="true"></iframe>
+
+<h2 id="五、Quicksort-快速排序"><strong>五、Quicksort-快速排序</strong></h2>
+<hr>
+<p><a href="https://github.com/Accagain2014/al-ds/blob/master/sort/quicksort.cpp" target="_blank" rel="external"><strong>代码</strong></a></p>
+<p><iframe src="http://player.youku.com/player.php/sid/XMzMyODk4NTQ4/v.swf" type="application/x-shockwave-flash" width="550" height="400" quality="high" allowfullscreen="true"></iframe><br><strong>快速排序形象图</strong><br><img src="http://jbcdn2.b0.upaiyun.com/2012/01/Visual-and-intuitive-feel-of-7-common-sorting-algorithms.gif" alt=""></p>
+<h2 id="六、Mergesort-归并排序"><strong>六、Mergesort-归并排序</strong></h2>
+<hr>
+<p><a href="https://github.com/Accagain2014/al-ds/blob/master/sort/mergesort.cpp" target="_blank" rel="external"><strong>代码</strong></a></p>
+<p><iframe src="http://player.youku.com/player.php/sid/XMzMyODk5Njg4/v.swf" type="application/x-shockwave-flash" width="550" height="400" quality="high" allowfullscreen="true"></iframe><br><strong>归并排序形象图</strong><br><img src="http://jbcdn2.b0.upaiyun.com/2012/01/Visual-and-intuitive-feel-of-7-common-sorting-algorithms2.gif" alt=""></p>
+<h2 id="七、Heapsort-堆排序"><strong>七、Heapsort-堆排序</strong></h2>
+<hr>
+<p><a href="https://github.com/Accagain2014/al-ds/blob/master/sort/heapsort.cpp" target="_blank" rel="external"><strong>代码</strong></a><br><strong>堆排序形象图</strong><br><img src="http://jbcdn2.b0.upaiyun.com/2012/01/Visual-and-intuitive-feel-of-7-common-sorting-algorithms3.gif" alt=""></p>
+<h2 id="八、Countsort-计数排序"><strong>八、Countsort-计数排序</strong></h2>
+<hr>
+<p><a href="https://github.com/Accagain2014/al-ds/blob/master/sort/countsort.cpp" target="_blank" rel="external"><strong>代码</strong></a></p>
+<h2 id="九、Cardinalsort-基数排序"><strong>九、Cardinalsort-基数排序</strong></h2>
+<hr>
+<p><a href="https://github.com/Accagain2014/al-ds/blob/master/sort/cardinalsort.cpp" target="_blank" rel="external"><strong>代码</strong></a></p>
 
       
     </div>
@@ -83,13 +100,13 @@
         
   
   <div class="categories">
-    <a href="/categories/Machine-Learning/">Machine Learning</a>
+    <a href="/categories/Basic-Algorithm/">Basic Algorithm</a>
   </div>
 
         
   
   <div class="tags">
-    <a href="/tags/Machine-Learning/">Machine Learning</a>, <a href="/tags/Andrew-Ng/">Andrew Ng</a>
+    <a href="/tags/排序/">排序</a>, <a href="/tags/C/">C</a>, <a href="/tags/C/">C++</a>
   </div>
 
         
@@ -133,7 +150,7 @@ var duoshuoQuery = {short_name:"accagain"};
   }(document, 'script', 'facebook-jssdk'));
 </script>
 
-<div class="fb-comments" data-href="http://yoursite.com/2015/01/15/《Machine-Learning》-02-Linear-Regression-with-One-Variable/" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+<div class="fb-comments" data-href="http://yoursite.com/2015/03/14/九种排序实现-C-C/" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
       
   
 
