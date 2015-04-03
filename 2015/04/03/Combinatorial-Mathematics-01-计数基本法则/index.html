@@ -1,0 +1,316 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta name="Accagain" content="Accagain">
+  <meta charset="utf-8" >
+  
+  <title>Combinatorial Mathematics 01 计数基本法则 | Accagain</title>
+  <meta name="author" content="Accagain">
+  
+  <meta name="description" content="Accagain&#39;s blog">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Combinatorial Mathematics 01 计数基本法则"/>
+  <meta property="og:site_name" content="Accagain"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.ico" rel="icon" type="image/x-ico">
+  <link rel="alternate" href="/atom.xml" title="Accagain" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Accagain</a></h1>
+  <h2><a href="/">Enjoy the communications and do better ! ---- cms</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">主页</a></li>
+    
+      <li><a href="/archives">归档</a></li>
+    
+      <li><a href="/about">关于</a></li>
+    
+      <li><a href="/csdn">我的CSDN博客</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2015-04-03T06:58:25.000Z"><a href="/2015/04/03/Combinatorial-Mathematics-01-计数基本法则/">4月 3 2015</a></time>
+      
+      
+  
+    <h1 class="title">Combinatorial Mathematics 01 计数基本法则</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <hr>
+<p>最近在跟<a href="http://www.xuetangx.com/courses/TsinghuaX/60240013_2015X/2015_T1/about" target="_blank" rel="external">马昱春(清华大学-计算机系-副教授)的组合数学</a>课,顺便做做笔记。</p>
+<h2 id="一-加减乘除计数法则"><strong>一.加减乘除计数法则</strong></h2>
+<pre><code>分类：加法    (Addition Principle)
+分步：乘法    (Multiplication Principle)
+
+运用时注意事件的独立性
+
+减法    (Substraction Principle)
+除法    (Division Principle)
+</code></pre><a id="more"></a>
+
+
+<h2 id="二-排列(Permutation)和组合(Combination)"><strong>二.排列(Permutation)和组合(Combination)</strong></h2>
+<pre><code>P(n,r) = n!/(n-r)! 无重排列 (n个球放入r个不同盒子)
+
+    分布策略: P(n,r) = n*P(n-<span class="number">1</span>,r-<span class="number">1</span>) 先放第一个盒子
+    分类策略：P(n,r) = r*P(n-<span class="number">1</span>,r-<span class="number">1</span>) + P(n-<span class="number">1</span>,r) 选不选第一个球
+
+<span class="keyword">C</span>(n,r)    无重组合    (n个球放入r个相同盒子)
+    从排列推出组合,<span class="keyword">C</span>(n,r) = P(n,r)/r!
+
+<span class="keyword">C</span>(n,r) = <span class="keyword">C</span>(n,n-r)
+<span class="keyword">C</span>(n,l)<span class="keyword">C</span>(l,r) = <span class="keyword">C</span>(n,r)<span class="keyword">C</span>(n-r,l-r) 先选出r个人,再在n-r中选l-r个 总共l个
+</code></pre><h2 id="三-格路模型与组合恒等式"><strong>三.格路模型与组合恒等式</strong></h2>
+<pre><code>格路模型：
+    只能横着走和竖着走    (<span class="number">0</span>,<span class="number">0</span>)-&gt;(m,n)    : C(n+m,n) 总共有多少步
+二项式定理：
+    (a+b)^n = C(n,<span class="number">0</span>)a^n + C(n,<span class="number">1</span>)a^(n-<span class="number">1</span>)b + <span class="keyword">...</span> + C(n,n)*b^n
+    当 a=b=<span class="number">1</span> 时 <span class="number">2</span>^n = C(n,<span class="number">0</span>) + C(n,<span class="number">1</span>) + C(n,<span class="number">2</span>) + <span class="keyword">...</span> + C(n,n)
+杨辉三角：
+    C(n,r) = C(n-<span class="number">1</span>,r) + C(n-<span class="number">1</span>,r-<span class="number">1</span>) 对于选择某个人或不选某个人
+范德蒙德恒等式(Vandemonde)
+    C(m+n,r) = C(m,<span class="number">0</span>)C(n,r) + C(m,<span class="number">1</span>)C(n,r-<span class="number">1</span>) + <span class="keyword">...</span> + C(m,r)C(n,<span class="number">0</span>)
+</code></pre><h2 id="四-圆排列和项链排列"><strong>四.圆排列和项链排列</strong></h2>
+<pre><code><span class="attribute">圆排列：从n个元素中取出r个的圆排列的排列数是P(n,r)/r     2&lt;</span>=<span class="string">r&lt;=n 剪开思想
+项链排列：就是圆排列的翻转和不翻转是一样的</span>
+</code></pre><h2 id="五-可重组合"><strong>五.可重组合</strong></h2>
+<pre><code>n种不同元素选r个,<span class="function">CC</span>(n,r),可重复
+    <span class="function">C</span>(n+r-1,r)
+隔板法：r个0分成n个部分,需要n-1个边框,这种方式的种数
+</code></pre><h2 id="六-不相邻组合"><strong>六.不相邻组合</strong></h2>
+<pre><code>从一排n个人中选择r个不相邻的组合
+<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>
+<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>
+(<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>) 位置下标
+<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>     构造成一一对应的关系
+
+<span class="keyword">C</span>(n-r+<span class="number">1</span>,r)
+</code></pre><h2 id="七-钟声里的全排列"><strong>七.钟声里的全排列</strong></h2>
+<pre><code>字典序全排列生成法
+
+SJT算法
+    可移动数(Mobile <span class="keyword">Integer</span>)箭头方向数比自己小
+    交换后比他大的数将会变换方向
+</code></pre><h2 id="八-常用的排列生成全排列工具"><strong>八.常用的排列生成全排列工具</strong></h2>
+<pre><code>STL permutation
+    next_permutation
+Stirling数
+    近似逼近    n!~sqrt(2<span class="keyword">*</span>PI<span class="keyword">*</span>n)(n/e)^n     n-&gt;无穷
+</code></pre><h2 id="九-常见问题总结"><strong>九.常见问题总结</strong></h2>
+<ul>
+<li><p><strong>1)可重组合问题</strong><br>   给三个孩子发水果,一共12个一样的苹果,每个孩子至少一个苹果,问共有多少种分法：</p>
+<pre><code>  <span class="number">12</span>个苹果,中间有<span class="number">11</span>个位置,选择两个隔板,C(<span class="number">11</span>,<span class="number">2</span>),保证了每部分至少一个
+  类似的问题：x1 + x2 + <span class="keyword">...</span> + xn = r (xi &gt;= <span class="number">0</span>)
+  首先每个X分配一个,x1<span class="string">' + x2'</span> + <span class="keyword">...</span> + xn<span class="string">' = n+r (xi'</span> &gt; <span class="number">0</span>)
+  相当于n+r-<span class="number">1</span>个位置中,选择n-<span class="number">1</span>个位置放隔板,分成n部分,是每部分至少为<span class="number">1</span>
+</code></pre></li>
+<li><p><strong>2)互不相邻问题</strong><br>  求满足下列条件的五位数个数,任意两个数位上的数字之差的绝对值不小于2</p>
+<pre><code>  构造等价连续数列,注意是任意两个数位.分析知也就是任意两位不是相邻的,也即
+   0,2,4,6,8
+   1,3,5,7,9
+  (0,1,2,3,4)  <span class="comment">//序号 第一二行减去第三行</span>
+  0,1,2,3,4,5 最大为5 这6个数中任意选5个都是可行的,<span class="function">C</span>(6,5)*<span class="function">A</span>(5,5)
+  在排除首位为0的<span class="value">: <span class="function">C</span>(<span class="number">5</span>,<span class="number">4</span>)*<span class="function">A</span>(<span class="number">4</span>,<span class="number">4</span>)
+  <span class="function">C</span>(<span class="number">6</span>,<span class="number">5</span>)*<span class="function">A</span>(<span class="number">5</span>,<span class="number">5</span>)<span class="function">-C</span>(<span class="number">5</span>,<span class="number">4</span>)*<span class="function">A</span>(<span class="number">4</span>,<span class="number">4</span>)</span>
+</code></pre></li>
+<li><p><strong>3)转化成递推问题</strong><br>  8个人排队买票，4个人拿着10元，4个人拿着20元，票价10元，售票处一开始没有钱，请问能够顺利买票的排队方案数。</p>
+<pre><code>  设n为总人数,m1为拿10元的人数,m2为拿20元的人数,分析知对任意时刻都必须满足m1&gt;=m2
+  设dp[<span class="link_label">i</span>][<span class="link_reference">j</span>]：到第i个人之前有j个人拿着10元的种数
+  容易的dp[<span class="link_label">i</span>][<span class="link_reference">j</span>] = dp[<span class="link_label">i-1</span>][<span class="link_reference">j-1</span>] <span class="bullet">* (m1-(j-1)) + dp[i-1][j-1] *</span> (m1-(j-1))
+  注意判断不存在的情况
+</code></pre><p>  <a href="https://github.com/Accagain2014/al-ds/blob/master/combinatorial%20mathematics/2-G1.cpp" target="_blank" rel="external">参考代码</a></p>
+</li>
+<li><p><strong>4)经典问题</strong><br>  m个0,n个1组成的字符串中，出现01或10的总次数为k的字符串，有多少个？</p>
+<pre><code>  首先把<span class="number">0</span>,<span class="number">1</span>交错的写成一串,<span class="number">01010101.</span><span class="keyword">...</span>,此时相邻的两数都是<span class="number">01</span>或<span class="number">10</span>字符串,由于需要k个,当k是奇数时,一共占了p0=k/<span class="number">2</span>+<span class="number">1</span>个<span class="number">0</span>,p1=k/<span class="number">2</span>个<span class="number">1</span>,此时还剩s0=m-(k/<span class="number">2</span>+<span class="number">1</span>)个<span class="number">0</span>,剩s1=n-(k/<span class="number">2</span>)个<span class="number">1</span>,再把这些<span class="number">0</span>放到<span class="number">0</span>的位置,<span class="number">1</span>放到<span class="number">1</span>的位置(连续的<span class="number">0</span>和连续的<span class="number">1</span>不影响最终的<span class="number">01</span>或<span class="number">10</span>字符串个数),此时相当于把s0给p0个位置,每个位置可以为空,也就是一个可重问题:
+  C(s0+p0-<span class="number">1</span>,s0)*C(s1+p1-<span class="number">1</span>,s1)
+  对于<span class="number">10101010.</span><span class="keyword">...</span>是同样的道理
+</code></pre><p>  <a href="https://github.com/Accagain2014/al-ds/blob/master/combinatorial%20mathematics/2-G2-2.py" target="_blank" rel="external">参考代码</a></p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/Combinatorial-Mathematics/">Combinatorial Mathematics</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/Combinatorial-Mathematics/">Combinatorial Mathematics</a>, <a href="/tags/计数法则/">计数法则</a>
+  </div>
+
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+
+<!-- ��˵���ۿ� start -->
+	<div class="ds-thread" data-thread-key="�뽫�˴��滻������������վ���е�ID" data-title="���滻�����µı���" data-url="���滻�����µ���ַ"></div>
+<!-- ��˵���ۿ� end -->
+<!-- ��˵����JS���� start (һ����ҳֻ������һ��) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"accagain"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- ��˵����JS���� end -->
+
+<h1 class="title">留言</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://yoursite.com/2015/04/03/Combinatorial-Mathematics-01-计数基本法则/" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+
+
+  </section>
+
+
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//baidu.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+   
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/Basic-Algorithm/">Basic Algorithm</a><small>1</small></li>
+  
+    <li><a href="/categories/Combinatorial-Mathematics/">Combinatorial Mathematics</a><small>1</small></li>
+  
+    <li><a href="/categories/Lectures/">Lectures</a><small>1</small></li>
+  
+    <li><a href="/categories/Life/">Life</a><small>2</small></li>
+  
+    <li><a href="/categories/Machine-Learning/">Machine Learning</a><small>3</small></li>
+  
+    <li><a href="/categories/PHP/">PHP</a><small>2</small></li>
+  
+    <li><a href="/categories/Python/">Python</a><small>8</small></li>
+  
+    <li><a href="/categories/《Linux私房菜基础篇》/">《Linux私房菜基础篇》</a><small>1</small></li>
+  
+    <li><a href="/categories/网络编程/">网络编程</a><small>2</small></li>
+  
+  </ul>
+</div>
+
+
+  <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=2&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=3871485516&verifier=4ca01292&dpc=1"></iframe>
+
+  
+<div class="widget tagcloud">
+  <h3 class="title">标签云</h3>
+  <div class="entry">
+    <a href="/tags/Andrew-Ng/" style="font-size: 16.67px;">Andrew Ng</a><a href="/tags/C/" style="font-size: 10.00px;">C</a><a href="/tags/C/" style="font-size: 10.00px;">C++</a><a href="/tags/Combinatorial-Mathematics/" style="font-size: 10.00px;">Combinatorial Mathematics</a><a href="/tags/Error/" style="font-size: 10.00px;">Error</a><a href="/tags/IO/" style="font-size: 10.00px;">IO</a><a href="/tags/Lecture/" style="font-size: 10.00px;">Lecture</a><a href="/tags/Linux/" style="font-size: 10.00px;">Linux</a><a href="/tags/Machine-Learning/" style="font-size: 16.67px;">Machine Learning</a><a href="/tags/Process/" style="font-size: 10.00px;">Process</a><a href="/tags/Python/" style="font-size: 20.00px;">Python</a><a href="/tags/Thread/" style="font-size: 10.00px;">Thread</a><a href="/tags/article/" style="font-size: 10.00px;">article</a><a href="/tags/life/" style="font-size: 13.33px;">life</a><a href="/tags/php/" style="font-size: 13.33px;">php</a><a href="/tags/socket/" style="font-size: 10.00px;">socket</a><a href="/tags/zmq/" style="font-size: 10.00px;">zmq</a><a href="/tags/排序/" style="font-size: 10.00px;">排序</a><a href="/tags/模拟登陆/" style="font-size: 10.00px;">模拟登陆</a><a href="/tags/正则表达/" style="font-size: 10.00px;">正则表达</a><a href="/tags/私房菜/" style="font-size: 10.00px;">私房菜</a><a href="/tags/网络编程/" style="font-size: 16.67px;">网络编程</a><a href="/tags/计数法则/" style="font-size: 10.00px;">计数法则</a><a href="/tags/鸟哥/" style="font-size: 10.00px;">鸟哥</a>
+  </div>
+</div>
+
+
+  <div class="widget tag">
+<h3 class="title">友情链接</h3>
+<ul class="entry">
+<li><a href="http://www.keepstudying.net/">PrettyDad</a></li>
+<li><a href="http://www.xysay.com/">xysay</a></li>
+<li><a href="http://shallyan.com/">Shallyan</a></li>
+<li><a href="http://www.boblee0717.com/">Boblee</a></li>
+</ul>
+</div>
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 Accagain
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//lib.sinaapp.com/js/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+<a title="返回顶部"><img src="/imgs/scrollup.png"/></a>
+</div>
+<script src="/js/totop.js"></script>
+
+</body>
+</html>
