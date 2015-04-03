@@ -151,7 +151,11 @@ Stirling数
 </code></pre><p>  <a href="https://github.com/Accagain2014/al-ds/blob/master/combinatorial%20mathematics/2-G1.cpp" target="_blank" rel="external">参考代码</a></p>
 </li>
 <li><p><strong>4)经典问题</strong><br>  m个0,n个1组成的字符串中，出现01或10的总次数为k的字符串，有多少个？</p>
-<pre><code>  首先把<span class="number">0</span>,<span class="number">1</span>交错的写成一串,<span class="number">01010101.</span><span class="keyword">...</span>,此时相邻的两数都是<span class="number">01</span>或<span class="number">10</span>字符串,由于需要k个,当k是奇数时,一共占了p0=k/<span class="number">2</span>+<span class="number">1</span>个<span class="number">0</span>,p1=k/<span class="number">2</span>个<span class="number">1</span>,此时还剩s0=m-(k/<span class="number">2</span>+<span class="number">1</span>)个<span class="number">0</span>,剩s1=n-(k/<span class="number">2</span>)个<span class="number">1</span>,再把这些<span class="number">0</span>放到<span class="number">0</span>的位置,<span class="number">1</span>放到<span class="number">1</span>的位置(连续的<span class="number">0</span>和连续的<span class="number">1</span>不影响最终的<span class="number">01</span>或<span class="number">10</span>字符串个数),此时相当于把s0给p0个位置,每个位置可以为空,也就是一个可重问题:
+<pre><code>  首先把<span class="number">0</span>,<span class="number">1</span>交错的写成一串,<span class="number">01010101.</span><span class="keyword">...</span>,此时相邻的两数都是<span class="number">01</span>或<span class="number">10</span>字符串,
+  由于需要k个,当k是奇数时,一共占了p0=k/<span class="number">2</span>+<span class="number">1</span>个<span class="number">0</span>,p1=k/<span class="number">2</span>个<span class="number">1</span>,
+  此时还剩s0=m-(k/<span class="number">2</span>+<span class="number">1</span>)个<span class="number">0</span>,剩s1=n-(k/<span class="number">2</span>)个<span class="number">1</span>,再把这些<span class="number">0</span>放到<span class="number">0</span>的位置,<span class="number">1</span>放到<span class="number">1</span>的位置(连续的<span class="number">0</span>和连续的<span class="number">1</span>不影响最终的<span class="number">01</span>或<span class="number">10</span>字符串个数),
+
+  此时相当于把s0给p0个位置,每个位置可以为空,也就是一个可重问题:
   C(s0+p0-<span class="number">1</span>,s0)*C(s1+p1-<span class="number">1</span>,s1)
   对于<span class="number">10101010.</span><span class="keyword">...</span>是同样的道理
 </code></pre><p>  <a href="https://github.com/Accagain2014/al-ds/blob/master/combinatorial%20mathematics/2-G2-2.py" target="_blank" rel="external">参考代码</a></p>
