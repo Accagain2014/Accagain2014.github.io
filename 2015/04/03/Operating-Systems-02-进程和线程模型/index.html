@@ -1,0 +1,433 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta name="Accagain" content="Accagain">
+  <meta charset="utf-8" >
+  
+  <title>Operating Systems 02 进程和线程模型 | Accagain</title>
+  <meta name="author" content="Accagain">
+  
+  <meta name="description" content="Accagain&#39;s blog">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Operating Systems 02 进程和线程模型"/>
+  <meta property="og:site_name" content="Accagain"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.ico" rel="icon" type="image/x-ico">
+  <link rel="alternate" href="/atom.xml" title="Accagain" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Accagain</a></h1>
+  <h2><a href="/">Enjoy the communications and do better ! ---- cms</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">主页</a></li>
+    
+      <li><a href="/archives">归档</a></li>
+    
+      <li><a href="/about">关于</a></li>
+    
+      <li><a href="/csdn">我的CSDN博客</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2015-04-03T12:13:55.000Z"><a href="/2015/04/03/Operating-Systems-02-进程和线程模型/">4月 3 2015</a></time>
+      
+      
+  
+    <h1 class="title">Operating Systems 02 进程和线程模型</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <hr>
+<h2 id="一-进程"><strong>一.进程</strong></h2>
+<ul>
+<li><strong>多道程序设计(Multiprogramming)</strong><pre><code>  允许多个程序同时进入内存并运行,其目的是为了提高系统效率。
+  如何管理？
+</code></pre></li>
+</ul>
+<p><a id="more"></a></p>
+<ul>
+<li><p><strong>并发环境与并发程序</strong></p>
+<pre><code>  并发环境：
+      一段时间间隔内,单处理器上有两个或两个以上的程序同时处于开始运行
+      但尚未结束的状态并且次序不是事先确定的。
+  并发程序：在并发环境中执行的程序<span class="keyword">*</span><span class="keyword">*</span>
+</code></pre></li>
+<li><p><strong>进程的定义</strong></p>
+<pre><code>  定义:Process
+      进程是具有独立功能的程序关于某个数据集合上的一次运行活动,是系统进行资源分配和CPU调度的独立单位.
+      又称 任务(Task or Job)
+  --&gt;    
+      <span class="number">1</span>)程序的一次执行过程
+      <span class="number">2</span>)是正在运行程序的抽象,对CPU的抽象
+      <span class="number">3</span>)将一个CPU变幻成多个虚拟的CPU
+      <span class="number">4</span>)系统资源以进程为单位分配,如内存/文件/<span class="keyword">...</span>
+      <span class="number">5</span>)操作系统为每个进程分配了一个独立的地址空间
+      <span class="number">6</span>)操作系统将CPU调度给需要的进程
+</code></pre></li>
+<li><p><strong>进程控制块PCB</strong></p>
+<pre><code>  <span class="number">1</span>)<span class="constant">PCB</span>：<span class="constant">Process</span> <span class="constant">Control</span> <span class="constant">Block</span> (又称进程描述符,进程属性)
+  <span class="number">2</span>)操作系统用于管理控制进程的一个专门数据结构
+  <span class="number">3</span>)记录进程的各种属性,描述进程的动态变化过程
+<span class="input"><span class="prompt">
+  PCB是系统感知进程存在的唯一标志
+      -&gt;</span> 进程与<span class="constant">PCB</span>是一一对应的</span>
+
+  进程表(大小固定的,也即系统的并发度)<span class="symbol">:</span> 所有进程的<span class="constant">PCB</span>集合
+  <span class="constant">PCB</span>通常是系统内存占用区中的一个连续存区
+</code></pre></li>
+<li><p><strong>PCB管理的内容</strong></p>
+<pre><code>  1)进程描述信息
+      -<span class="ruby"> 进程标识(process <span class="constant">ID</span>),唯一,通常是一个整数
+</span>      -<span class="ruby"> 进程名,通常基于可执行文件名,不唯一
+</span>      -<span class="ruby"> 用户标识符(user <span class="constant">ID</span>)
+</span>      -<span class="ruby"> 进程组关系(兄弟姐妹进程)
+</span>  2)进程控制信息
+      -<span class="ruby"> 当前状态
+</span>      -<span class="ruby"> 优先级(priority)
+</span>      -<span class="ruby"> 代码执行入口地址(可执行文件在磁盘中的位置)
+</span>      -<span class="ruby"> 程序统计信息(执行时间,页面调度)
+</span>      -<span class="ruby"> 进程间同步和通信
+</span>      -<span class="ruby"> 进程的队列指针
+</span>      -<span class="ruby"> 进程的消息队列指针
+</span>  3)所拥有资源和使用情况
+      -<span class="ruby"> 虚拟地址空间的状况(存储空间)
+</span>      -<span class="ruby"> 打开文件列表
+</span>  4)CPU现场信息(进程不运行时,操作系统要保存哪些硬件执行状态)
+      -<span class="ruby"> 寄存器(通用寄存器/程序计数器<span class="constant">PC</span>/程序状态字<span class="constant">PSW</span>,栈指针)
+</span>      -<span class="ruby"> 指向该进程页表的指针(地址空间相关)
+</span>
+  从另一个角度考虑PCB所需的内容,Process management/Memory management/File management(Root directory.
+  Working directory.File descriptors.UserID.GroupID)
+
+  PCB的名字在不同系统中不一样
+  Linux: task_struct
+  Windows：EPROCESS,KPROCESS,PEB(由这三部分组成)
+</code></pre></li>
+</ul>
+<h2 id="二-进程状态及状态转换"><strong>二.进程状态及状态转换</strong></h2>
+<ul>
+<li><p><strong>进程的三种基本状态</strong></p>
+<pre><code>  运行态(Running)：
+      占有<span class="built_in">CPU</span>,并在<span class="built_in">CPU</span>上运行
+  就绪态(Ready):
+      已经具备运行条件,但由于没有空闲<span class="built_in">CPU</span>,而暂时不能运行
+  等待态(Waiting/Blocked)：(阻塞态/封锁态/睡眠态)
+      因等待某一事件而暂时不能运行(eg等待读盘结果)
+</code></pre></li>
+<li><p><strong>三状态模型及状态转换</strong></p>
+</li>
+<li><p><strong>进程队列</strong></p>
+<pre><code>  1)操作系统为每一类进程建立一个或多个队列
+  2)队列元素为PCB
+  3)伴随进程状态的改变,其PCB从一个队列进入另一个队列
+      等待的事件不同,放在不同的等待队列
+</code></pre></li>
+<li><p><strong>进程控制</strong></p>
+<pre><code>  进程控制操作完成进程各状态之间的转换,由具有特定功能的原语完成
+      原语(primitive),原子操作
+      (特定功能的程序,执行过程不允许中断,不可分割,持续执行,执行需操作系统支持(eg:屏蔽中断))
+          进程创建原语/进程撤销原语/阻塞原语/唤醒原语/挂起原语/激活原语/改变进程优先级等
+
+  1.进程创建(UNIX:fork/exec WINDOWS:CreateProcess)
+      -<span class="ruby"> 给新进程分配一个唯一标识以及进程控制块
+</span>      -<span class="ruby"> 为进程分配地址空间(虚拟地址空间)
+</span>      -<span class="ruby"> 初始化进程控制块(设置默认值(<span class="symbol">eg:</span>状态为<span class="constant">NEW</span>...))
+</span>      -<span class="ruby"> 设置相应的队列指针(<span class="symbol">eg:</span>把新进程加到就绪队列链表中)
+</span>
+  2.进程的撤销(结束进程)(UNIX:exit WINDOWS:TerminateProcess)
+      -<span class="ruby"> 收回进程所占的资源(关闭打开的文件/断开网络连接/回收分配的内存)
+</span>      -<span class="ruby"> 撤销该进程的<span class="constant">PCB</span>
+</span>
+  3.进程阻塞(UNIX:wait WINDOWS:WaitForSingleObject)
+      处于运行状态的进程,在其运行过程中,期待某一件事发生,eg等待键盘输入/等待磁盘数据传输完成
+<span class="comment">      /等待其他进程发送消息等.当被等待的事件为发生时,由进程自己执行阻塞原语,</span>
+      使自己由运行态变为阻塞态.
+</code></pre></li>
+<li><p><strong>UNIX的几个进程控制操作</strong>(系统调用形式)</p>
+<pre><code>  fork() 通过复制调用进程来建立新的进程,是最基本的进程建立过程(复制父进程)
+  exec() 包括一系列系统调用,它们都是通过用一段新的程序代码覆盖原来的地址空间,
+  实现进程执行代码的转换(子进程通过复制代码,实现控制转换)
+  wait() 提供初级进程同步操作,能使一个进程等待另外一个进程的结束
+  exit() 用来终止一个进程的执行
+
+  <span class="constant">Linux</span>采用了写时复制技术(<span class="constant">COW</span><span class="symbol">:Copy-On-Write</span>)<span class="symbol">:</span>先不一页一页
+  复制父进程地址空间,而是只复制一个地址指针,当子进程需要空间时,再复制给它
+  fork() 父进程和子进程是两个地址空间 <span class="constant">PC</span>不一样
+</code></pre></li>
+</ul>
+<h2 id="四-关于进程相关概念的讨论"><strong>四.关于进程相关概念的讨论</strong></h2>
+<ul>
+<li><p><strong>关于进程的划分</strong></p>
+<pre><code>  进程分类一：系统进程(方便系统管理,优先级高)和用户进程
+      分类二：前台进程(和用户直接交互)和后台进程(操作系统启动后创建的,为用户服务(eg打印进程),还包括一些应用进程(邮件/防火墙))
+      分类三：CPU密集型进程(游戏的渲染)和<span class="keyword">I</span>/<span class="keyword">O</span>密集型进程
+  进程层次结构：
+      UNIX进程家族树：init(<span class="number">1</span>号进程)为根(某进程结束,所有的子进程结束)
+      Windows：地位相同
+</code></pre></li>
+<li><p><strong>进程和程序的区别</strong></p>
+<pre><code>  <span class="number">1</span>)进程能更准确刻画并发,而程序不能
+  <span class="number">2</span>)程序是静态的,进程是动态的
+  <span class="number">3</span>)进程有生命周期的,有诞生有消亡,是短暂的,而程序是相对长久的
+  <span class="number">4</span>)一个程序可对应多个进程
+  <span class="number">5</span>)进程具有创建其他进程的功能
+      <span class="keyword">e</span><span class="variable">g:</span>编译器程序,编译一个程序是一个进程
+</code></pre></li>
+<li><p><strong>进程地址空间</strong></p>
+<pre><code>  怎么理解操作系统为每个进程都分配了一个地址空间？
+  为什么myval的值不同,但地址相同？
+      每个进程有相对独立的地址空间的结果,地址空间是隔离的,不是实际物理地址,是相对地址(逻辑地址)
+      myval变量是在不同的地址空间里头的相同的位置,所以虚拟地址(相对于该用户空间地址)是相同的
+</code></pre></li>
+<li><p><strong>进程映像(IMAGE)</strong></p>
+<pre><code>  对进程执行活动全过程的静态描述(进程执行过程中某一时刻的快照)
+      由进程地址空间内容/硬件寄存器内容/该进程相关的内核数据结构.内核栈组成
+  - 用户相关：进程地址空间(包括代码段/数据段/堆和栈/共享库<span class="keyword">...</span>)
+  - 寄存器相关：程序寄存器/指令寄存器/程序状态寄存器/栈指针/通用寄存器等的值
+  - 内核相关：
+      静态部分：PCB及各种资源数据结构
+      动态部分：内核栈(不同进程在进入内核后使用不同的内核栈)
+</code></pre></li>
+<li><p><strong>上下文(CONTEXT)切换</strong></p>
+<pre><code>  -<span class="ruby"> 将<span class="constant">CPU</span>硬件状态从一个进程切换到另一个进程的过程称为上下文切换.
+</span>  -<span class="ruby"> 进程运行时,其硬件状态保存在<span class="constant">CPU</span>上的寄存器中
+</span>  -<span class="ruby"> 进程不运行时,这些寄存器的值保存在进程控制块<span class="constant">PCB</span>中,当操作系统要运行一个
+</span>  新的进程时,将它的PCB中的相关值送到对应的寄存器中,就完成了上下文切换的过程.
+</code></pre></li>
+</ul>
+<h2 id="五-线程的引入"><strong>五.线程的引入</strong></h2>
+<ul>
+<li><p><strong>线程的引入</strong></p>
+<pre><code>  理由：
+      -<span class="ruby"> 应用的需要
+</span>      -<span class="ruby"> 开销的考虑
+</span>      -<span class="ruby"> 性能得分考虑
+</span>
+  线程之间的通信无需调用内核(同一进程内的线程共享内存和文件)
+  在同一进程增加了多个执行序列(线程(CPU调度的基本单位))
+</code></pre></li>
+<li><p><strong>线程的属性</strong> 运行实体</p>
+<pre><code>  -<span class="ruby"> 有标识符<span class="constant">ID</span>
+</span>  -<span class="ruby"> 有状态及状态转化 -&gt; 需要提供一些操作
+</span>  -<span class="ruby"> 不运行时需要保存的上下文
+</span>      有上下文环境：程序计数器及寄存器
+  -<span class="ruby"> 有自己的栈和栈指针
+</span>  -<span class="ruby"> 可以创建/撤销另一个线程
+</span>      程序开始是以一个单线程进程方式运行的
+  -<span class="ruby"> 感知不到时钟中断的,时钟中断是对进程而言的
+</span>
+  | 共享所在进程的地址空间和其他资源(线程之前的通信,便利)
+</code></pre></li>
+</ul>
+<h2 id="六-线程机制的实现"><strong>六.线程机制的实现</strong></h2>
+<ul>
+<li><p><strong>线程的实现</strong></p>
+<pre><code>  -<span class="ruby"> 用户级线程(线程切换不需要内核态特权(<span class="constant">UNIX</span>),运行时系统完成线程的管理工作(操作/线程表))(<span class="constant">Jacketing</span>/wrapper技术)
+</span>      POSIX线程库(PTHREAD)：Portable Operating System Interface
+      多线程编程接口,以线程库方式提供给用户
+
+      缺点：
+          -<span class="ruby"> 内核只将处理器分配给进程,同一进程中的多个线程不能同时运行于两个处理器上.
+</span>          -<span class="ruby"> 如果某个线程调用了阻塞的系统调用,内核阻塞该进程,导致所有的线程不能工作
+</span>
+  -<span class="ruby"> 核心级线程(<span class="constant">Kernel</span> <span class="constant">Level</span> <span class="constant">Thread</span>) <span class="constant">Windows</span>
+</span>      内核管理所有线程,并向应用程序提供API接口
+      内核维护进程和线程的上下文
+      线程的切换需要内核支持
+      以线程为基础进行调度
+
+  -<span class="ruby"> 混合 <span class="constant">Solaris</span>系统
+</span>      线程创建在用户空间完成
+      线程调度等在核心态完成
+
+      多个用户级线程多路复用多个内核级线程
+</code></pre></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/Operating-Systems/">Operating Systems</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/Process/">Process</a>, <a href="/tags/Thread/">Thread</a>, <a href="/tags/OS/">OS</a>
+  </div>
+
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+
+<!-- ��˵���ۿ� start -->
+	<div class="ds-thread" data-thread-key="�뽫�˴��滻������������վ���е�ID" data-title="���滻�����µı���" data-url="���滻�����µ���ַ"></div>
+<!-- ��˵���ۿ� end -->
+<!-- ��˵����JS���� start (һ����ҳֻ������һ��) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"accagain"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- ��˵����JS���� end -->
+
+<h1 class="title">留言</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://yoursite.com/2015/04/03/Operating-Systems-02-进程和线程模型/" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+
+
+  </section>
+
+
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//baidu.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+   
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/Basic-Algorithm/">Basic Algorithm</a><small>1</small></li>
+  
+    <li><a href="/categories/Combinatorial-Mathematics/">Combinatorial Mathematics</a><small>1</small></li>
+  
+    <li><a href="/categories/Lectures/">Lectures</a><small>1</small></li>
+  
+    <li><a href="/categories/Life/">Life</a><small>2</small></li>
+  
+    <li><a href="/categories/Machine-Learning/">Machine Learning</a><small>3</small></li>
+  
+    <li><a href="/categories/Operating-Systems/">Operating Systems</a><small>2</small></li>
+  
+    <li><a href="/categories/PHP/">PHP</a><small>2</small></li>
+  
+    <li><a href="/categories/Python/">Python</a><small>8</small></li>
+  
+    <li><a href="/categories/《Linux私房菜基础篇》/">《Linux私房菜基础篇》</a><small>1</small></li>
+  
+    <li><a href="/categories/网络编程/">网络编程</a><small>2</small></li>
+  
+  </ul>
+</div>
+
+
+  <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=2&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=3871485516&verifier=4ca01292&dpc=1"></iframe>
+
+  
+<div class="widget tagcloud">
+  <h3 class="title">标签云</h3>
+  <div class="entry">
+    <a href="/tags/Andrew-Ng/" style="font-size: 16.67px;">Andrew Ng</a><a href="/tags/C/" style="font-size: 10.00px;">C</a><a href="/tags/C/" style="font-size: 10.00px;">C++</a><a href="/tags/Combinatorial-Mathematics/" style="font-size: 10.00px;">Combinatorial Mathematics</a><a href="/tags/Error/" style="font-size: 10.00px;">Error</a><a href="/tags/IO/" style="font-size: 10.00px;">IO</a><a href="/tags/Lecture/" style="font-size: 10.00px;">Lecture</a><a href="/tags/Linux/" style="font-size: 10.00px;">Linux</a><a href="/tags/Machine-Learning/" style="font-size: 16.67px;">Machine Learning</a><a href="/tags/OS/" style="font-size: 10.00px;">OS</a><a href="/tags/Operating-Systems/" style="font-size: 10.00px;">Operating Systems</a><a href="/tags/Process/" style="font-size: 13.33px;">Process</a><a href="/tags/Python/" style="font-size: 20.00px;">Python</a><a href="/tags/Thread/" style="font-size: 13.33px;">Thread</a><a href="/tags/article/" style="font-size: 10.00px;">article</a><a href="/tags/life/" style="font-size: 13.33px;">life</a><a href="/tags/php/" style="font-size: 13.33px;">php</a><a href="/tags/socket/" style="font-size: 10.00px;">socket</a><a href="/tags/zmq/" style="font-size: 10.00px;">zmq</a><a href="/tags/排序/" style="font-size: 10.00px;">排序</a><a href="/tags/模拟登陆/" style="font-size: 10.00px;">模拟登陆</a><a href="/tags/正则表达/" style="font-size: 10.00px;">正则表达</a><a href="/tags/私房菜/" style="font-size: 10.00px;">私房菜</a><a href="/tags/网络编程/" style="font-size: 16.67px;">网络编程</a><a href="/tags/计数法则/" style="font-size: 10.00px;">计数法则</a><a href="/tags/鸟哥/" style="font-size: 10.00px;">鸟哥</a>
+  </div>
+</div>
+
+
+  <div class="widget tag">
+<h3 class="title">友情链接</h3>
+<ul class="entry">
+<li><a href="http://www.keepstudying.net/">PrettyDad</a></li>
+<li><a href="http://www.xysay.com/">xysay</a></li>
+<li><a href="http://shallyan.com/">Shallyan</a></li>
+<li><a href="http://www.boblee0717.com/">Boblee</a></li>
+</ul>
+</div>
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 Accagain
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//lib.sinaapp.com/js/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+<a title="返回顶部"><img src="/imgs/scrollup.png"/></a>
+</div>
+<script src="/js/totop.js"></script>
+
+</body>
+</html>
