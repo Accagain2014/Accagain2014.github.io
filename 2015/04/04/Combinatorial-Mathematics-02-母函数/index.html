@@ -5,7 +5,7 @@
   <meta name="Accagain" content="Accagain">
   <meta charset="utf-8" >
   
-  <title>Python 07 正则表达式 | Accagain</title>
+  <title>Combinatorial Mathematics 02 母函数 | Accagain</title>
   <meta name="author" content="Accagain">
   
   <meta name="description" content="Accagain&#39;s blog">
@@ -13,7 +13,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="Python 07 正则表达式"/>
+  <meta property="og:title" content="Combinatorial Mathematics 02 母函数"/>
   <meta property="og:site_name" content="Accagain"/>
 
   
@@ -56,58 +56,101 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2015-03-07T05:22:52.000Z"><a href="/2015/03/07/Python-07-正则表达式/">3月 7 2015</a></time>
+        <time datetime="2015-04-04T06:39:01.000Z"><a href="/2015/04/04/Combinatorial-Mathematics-02-母函数/">4月 4 2015</a></time>
       
       
   
-    <h1 class="title">Python 07 正则表达式</h1>
+    <h1 class="title">Combinatorial Mathematics 02 母函数</h1>
   
 
     </header>
     <div class="entry">
       
         <hr>
-<h2 id="正则表达式"><strong>正则表达式</strong></h2>
+<h2 id="一-母函数的定义"><strong>一.母函数的定义</strong></h2>
 <ul>
-<li>正则表达式是一种用来匹配字符串的强有力的武器。它的设计思想是用一种描述性的语言来给字符串定义一个规则，凡是符合规则的字符串，就称为“匹配”了，否则该字符串就是不合法的。</li>
-<li><code>\d</code>    匹配一个数字</li>
-<li><code>\w</code>    匹配一个字母或数字</li>
-<li><code>*</code>    表示任意个字符(包括0个)</li>
-<li><code>+</code>    表示至少一个</li>
+<li><p><strong>问题提出</strong></p>
+<pre><code><span class="xml">  投掷m粒色子时,加起来点数总和等于n的可能方式的数目
+
+  母函数和计数法则:函数中的系数对应计数序列,每一个色子对应一个多项式
+
+  投m粒色子的表示:G(x) = (x + x</span><span class="keyword">^2</span><span class="xml"> + x</span><span class="keyword">^3</span><span class="xml"> + x</span><span class="keyword">^4</span><span class="xml"> + x</span><span class="keyword">^5</span><span class="xml"> + x</span><span class="keyword">^6</span><span class="xml">)</span><span class="keyword">^m</span><span class="xml">
+
+  问题转化：G(x)展开式中x</span><span class="keyword">^n</span><span class="xml">项的系数</span>
+</code></pre><a id="more"></a>
+</li>
+<li><p><strong>定义:</strong></p>
+<pre><code>  - 关注每一个计数的序列
+  - 每个计数序列对应的是X^k
+  - 函数G(x)为[<span class="link_label">序列c0,c1,c2,...</span>](<span class="link_url">系数</span>)的母函数(似函数/非函数)
+  - 母函数就是一列用来展示一串数字序列的挂衣架(赫伯特.维尔夫)
+
+  映射思想(x-&gt;y-&gt;x)：原始的计数问题 -&gt; 母函数(多项式乘法运算使其具有计数的能力)
+
+  结构没有变化 - 视角转变 - 新思维/新想象力
+</code></pre></li>
 </ul>
-<p><a id="more"></a></p>
+<h2 id="二-母函数的应用"><strong>二.母函数的应用</strong></h2>
 <ul>
-<li><code>?</code>    表示0个或1个字符</li>
-<li><code>{n}</code>    表示n个字符</li>
-<li><code>{n,m}</code>    表示n-m个字符</li>
-<li><code>\s</code>    可以匹配一个空格(也包括Tab等空白符)</li>
-<li><code>\d{3}\s+\d{3,8}</code>    匹配以任意个空格隔开的带区号的电话号码</li>
-<li><code>\d{3}\-\d{3,8}</code>    匹配以<code>-</code>分隔开的两个数字</li>
-<li><code>[0-9a-zA-Z\_]</code>    匹配一个数字、字母或者下划线</li>
-<li><code>[0-9a-zA-Z\_]+</code>    可以匹配至少由一个数字、字母或下划线组成的字符串</li>
-<li><code>[a-zA-Z\_][0-9a-zA-Z\_]*</code>    可以匹配由字母或下划线开头，后接一个数字、字母或者下划线组成的字符串，也就是Python合法的变量</li>
-<li><code>[a-zA-Z\_][0-9a-zA-Z\_</code>{0,19}    更精确地限制了变量的长度是1-20个字符</li>
-<li><code>A|B</code>    可以匹配A或B <code>[P|p]ython</code>    可以匹配’Python’或者’python’</li>
-<li><code>^</code>    表示行的开头，<code>^\d</code>表示必须以数字开头</li>
-<li><code>$</code>    表示行的结束，<code>\d$</code>表示必须以数字结束</li>
+<li><p><strong>问题1</strong></p>
+<pre><code>  1,2,3,4g砝码,一共能称出多少种重量?对于某种重量,它有多少种不同的方案?
+</code></pre></li>
+<li><p><strong>抽象</strong></p>
+<pre><code>  对于1g砝码,要么选就用x表示,不选就用<span class="number">1</span>表示,(<span class="number">1</span>+x)
+  对于2g砝码,    <span class="keyword">...</span>    (<span class="number">1</span>+x^<span class="number">2</span>)
+  <span class="keyword">...</span>
+  G(x)=(<span class="number">1</span>+x)(<span class="number">1</span>+x^<span class="number">2</span>)(<span class="number">1</span>+x^<span class="number">3</span>)(<span class="number">1</span>+x^<span class="number">4</span>)
+</code></pre></li>
+<li><p><strong>问题解决</strong></p>
+<pre><code>  <span class="variable">G</span>(x)展开后,次数为能称的克数,系数为称该克数得到的种数.
+</code></pre></li>
+<li><p><strong>问题2</strong></p>
+<pre><code>  整数n拆分成<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="keyword">...</span>,m的和,并允许重复,求其母函数.
+</code></pre></li>
+<li><p><strong>抽象</strong></p>
+<pre><code>  数字<span class="number">1</span>,出现<span class="number">0</span>次<span class="symbol">:</span><span class="number">1</span>,出现<span class="number">1</span>次<span class="symbol">:x</span>,出现<span class="number">2</span>次<span class="symbol">:x^</span><span class="number">2</span>, ....
+  数字<span class="number">2</span>,出现<span class="number">0</span>次<span class="symbol">:</span><span class="number">1</span>,出现<span class="number">1</span>次<span class="symbol">:x^</span><span class="number">2</span>,出现<span class="number">2</span>次<span class="symbol">:x^</span><span class="number">4</span>,....
+  ....
+  数字m,出现<span class="number">0</span>次<span class="symbol">:</span><span class="number">1</span>,出现<span class="number">1</span>次<span class="symbol">:x^m</span>,出现<span class="number">2</span>次<span class="symbol">:x^</span><span class="number">2</span>m,....
+</code></pre></li>
+<li><p><strong>问题解决</strong></p>
+<pre><code>  G(x)=(<span class="number">1</span>+x+x^<span class="number">2</span>+<span class="keyword">...</span>)(<span class="number">1</span>+x^<span class="number">2</span>+x^<span class="number">4</span>+<span class="keyword">...</span>)<span class="keyword">...</span>(<span class="number">1</span>+x^m+x^(2m)+<span class="keyword">...</span>)
+  G(x)=<span class="number">1</span>/(<span class="number">1</span>-x)*<span class="number">1</span>/(<span class="number">1</span>-x^<span class="number">2</span>)...1/(<span class="number">1</span>-x^m)
+</code></pre></li>
 </ul>
-<h2 id="re模块"><strong>re模块</strong></h2>
+<h2 id="三-整数拆分"><strong>三.整数拆分</strong></h2>
 <ul>
-<li>Python提供<code>re</code>模块，包含所有正则表达式的功能。<strong>Python的字符串本身也用<code>\</code>转义，所以用r前缀</strong></li>
-<li>match()方法匹配成功，返回一个Match对象，否则返回None<br><img src="http://ww2.sinaimg.cn/large/e6c22e4cjw1epx4jgpog3j20f406jaax.jpg" alt=""></li>
-<li>用正则表达式切分字符串比用固定的字符更灵活<br><img src="http://ww4.sinaimg.cn/large/e6c22e4cjw1epx4oskqemj20fi059jsf.jpg" alt=""></li>
+<li><p><strong>有序拆分(Composition)</strong></p>
+<pre><code>  数字n拆分成r个自然数之和,有多少种不同的拆分方案?
+  <span class="keyword">C</span>(n-<span class="number">1</span>,r-<span class="number">1</span>)
+</code></pre></li>
+<li><p><strong>无序拆分(Partition)</strong></p>
+<pre><code>  P(n)(把正整数n分成正整数之和的种数)
+  G(x)=(<span class="number">1</span>+x+x^<span class="number">2</span>+<span class="keyword">...</span>)(<span class="number">1</span>+x^<span class="number">2</span>+x^<span class="number">4</span>+x^<span class="number">6</span>+<span class="keyword">...</span>)<span class="keyword">...</span>(<span class="number">1</span>+x^m+x^2m+<span class="keyword">...</span>)
+  OEIS:On-line Encycopedia of Integer Sequences(有关数学序列的一个权威数据库)
+</code></pre></li>
+<li><p><strong>1918年模式法(拉马努金(印度)) 无需拆分(P(200))</strong></p>
+<pre><code>  <span class="variable">Birch</span> <span class="keyword">and</span> <span class="variable">Swinnerton</span>-<span class="variable">Dyer</span>猜想(数学中的十大问题)
+</code></pre></li>
 </ul>
-<h2 id="分组"><strong>分组</strong></h2>
+<h2 id="四-Ferrers图像"><strong>四.Ferrers图像</strong></h2>
 <ul>
-<li>除了简单地判断是否匹配之外，正则表达式还有提取子串的强大功能。用<code>()</code>表示的就是要提取的分组(Group)</li>
-<li><code>(\d{3})-(\d{3,8})$</code>    分别定义了两个组，可以直接从匹配的字符串中提取出区号和本地号码.<strong>group(0)永远是原始字符串</strong><br><img src="http://ww2.sinaimg.cn/large/e6c22e4cgw1epx5a0bhpsj20i705rdh6.jpg" alt=""></li>
-<li><strong>正则匹配默认是贪婪匹配，也就是匹配尽可能多的字符。加上问好就是非贪婪匹配了。</strong><br><img src="http://ww4.sinaimg.cn/large/e6c22e4cjw1epx5hcboxcj20ia05d75e.jpg" alt=""></li>
+<li><p><strong>性质</strong></p>
+<pre><code>  - 每一层至少有一个格子
+  - 第一行与第一列互换,第二行与第二列互换,<span class="keyword">...</span>,沿副对角线翻转后仍是Ferrers图像.
+</code></pre></li>
+<li><p><strong>解决问题</strong></p>
+<pre><code>  -<span class="ruby"> 整数n拆分成最大数为k的拆分数,和数n拆分成k个数的和的拆分数相等.
+</span>   -<span class="ruby"> 整数n拆分成最多不超过m个数的和的拆分数,和n拆分成最大不超过m的拆分数相等
+</span>   -<span class="ruby"> 自共轭图像  &lt;=&gt; 奇数拆分数的表示方法</span>
+</code></pre></li>
 </ul>
-<h2 id="编译"><strong>编译</strong></h2>
-<ul>
-<li>在Python中使用正则表达式时，re模块内部会干两件事：1.编译正则表达式，如果正则表达式的字符串本身不合法，会报错。2.用编译后的正则表达式去匹配字符串。</li>
-<li><strong>如果一个正则表达式要重复使用几千次，出于效率的考虑，可以预编译该正则表达式，接下来重复使用时就不需要编译这个步骤了，直接匹配：</strong><br><img src="http://ww1.sinaimg.cn/large/e6c22e4cgw1epx5nvf7naj20hj05xabj.jpg" alt=""></li>
-<li><strong>编译后生成Regular Expression对象，由于该对象自己包含了正则表达式，所以调用对应的方法时不用给出正则字符串。</strong></li>
+<h2 id="五-母函数和递推"><strong>五.母函数和递推</strong></h2>
+<pre><code>    递推关系(Recurrence Relation)(即差分方程)
+    母函数(<span class="number">2</span>-3x)/((<span class="number">1</span>-x)*(<span class="number">1</span>-2x)) -&gt; 部分分式分解(<span class="number">1</span>-ax)^-<span class="number">1</span>=<span class="number">1</span>+ax+a^2x^<span class="number">2</span>+<span class="keyword">...</span> -&gt; 数字序列f(k)=<span class="number">2</span>^k+<span class="number">1</span> &lt;-&gt; 递推式子h(k)=2h(k-<span class="number">1</span>)+<span class="number">1</span>
+    通过母函数求递推的通项
+</code></pre><ul>
+<li><strong>序列 ..=.. 母函数 ..=.. 递推关系</strong></li>
 </ul>
 
       
@@ -117,13 +160,13 @@
         
   
   <div class="categories">
-    <a href="/categories/Python/">Python</a>
+    <a href="/categories/Combinatorial-Mathematics/">Combinatorial Mathematics</a>
   </div>
 
         
   
   <div class="tags">
-    <a href="/tags/Python/">Python</a>, <a href="/tags/正则表达/">正则表达</a>
+    <a href="/tags/母函数/">母函数</a>
   </div>
 
         
@@ -167,7 +210,7 @@ var duoshuoQuery = {short_name:"accagain"};
   }(document, 'script', 'facebook-jssdk'));
 </script>
 
-<div class="fb-comments" data-href="http://yoursite.com/2015/03/07/Python-07-正则表达式/" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+<div class="fb-comments" data-href="http://yoursite.com/2015/04/04/Combinatorial-Mathematics-02-母函数/" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
       
   
 
