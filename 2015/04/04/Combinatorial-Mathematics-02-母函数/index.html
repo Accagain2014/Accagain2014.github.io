@@ -152,6 +152,28 @@
 </code></pre><ul>
 <li><strong>序列 ..=.. 母函数 ..=.. 递推关系</strong></li>
 </ul>
+<h2 id="六-题目总结"><strong>六.题目总结</strong></h2>
+<pre><code>母函数是一个有力的工具,能够把实际中的问题抽象成数学问题,并借助泰勒展开求解.
+</code></pre><ul>
+<li><p><strong>题目描述</strong></p>
+<pre><code>  正整数n拆分成<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="keyword">...</span>,不允许重复的拆分数p(n),和下面哪个选项相等
+  A.将n个无区别的球放入n个无区别的盒子的方案数(允许有空盒)
+  B.正整数n拆分成<span class="number">2</span>,<span class="number">4</span>,<span class="number">6</span>,<span class="keyword">...</span>偶数和,但允许重复的拆分数q(n)
+  C.正整数n拆分成<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="keyword">...</span>奇数和,当允许重复的拆分数q(n)
+  D.将n个无区别的球放入n个有区别的盒子的方案数(允许有空盒)
+</code></pre></li>
+<li><p><strong>分析</strong></p>
+<pre><code>  问题也就是无序拆分,也即G(x)=(<span class="number">1</span>+x)(<span class="number">1</span>+x^<span class="number">2</span>)(<span class="number">1</span>+x^<span class="number">3</span>)<span class="keyword">...</span>
+  G(x)=(<span class="number">1</span>-x^<span class="number">2</span>)/(<span class="number">1</span>-x) * (<span class="number">1</span>-x^<span class="number">4</span>)/(<span class="number">1</span>-x^<span class="number">2</span>) * (<span class="number">1</span>-x^<span class="number">6</span>)/(<span class="number">1</span>-x^<span class="number">3</span>) * (<span class="number">1</span>-x^<span class="number">8</span>)/(<span class="number">1</span>-x^<span class="number">4</span>) <span class="keyword">...</span>
+  =&gt; G(x) = <span class="number">1</span>/(<span class="number">1</span>-x) * <span class="number">1</span>/(<span class="number">1</span>-x^<span class="number">3</span>) * <span class="number">1</span>/(<span class="number">1</span>-x^<span class="number">5</span>) <span class="keyword">...</span>
+  =&gt; G(x) = (<span class="number">1</span>+x+x^<span class="number">2</span>+<span class="keyword">...</span>)*(<span class="number">1</span>+x^<span class="number">3</span>+x^<span class="number">6</span>+<span class="keyword">...</span>)(<span class="number">1</span>+x^<span class="number">5</span>+x^<span class="number">10</span>+<span class="keyword">...</span>)<span class="keyword">...</span>
+
+  A.显然是个无序拆分g(x)=(<span class="number">1</span>+x+x^<span class="number">2</span>+x^<span class="number">3</span>+<span class="keyword">...</span>)(<span class="number">1</span>+x^<span class="number">2</span>+x^<span class="number">4</span>+x^<span class="number">6</span>+<span class="keyword">...</span>)(<span class="number">1</span>+x^<span class="number">3</span>+x^<span class="number">6</span>+<span class="keyword">...</span>)<span class="keyword">...</span>
+  B.g(x)=(<span class="number">1</span>+x^<span class="number">2</span>+x^<span class="number">4</span>+<span class="keyword">...</span>)(<span class="number">1</span>+x^<span class="number">4</span>+x^<span class="number">8</span>+<span class="keyword">...</span>)(<span class="number">1</span>+x^<span class="number">6</span>+x^<span class="number">12</span>+<span class="keyword">...</span>)<span class="keyword">...</span>
+  C.g(x)=(<span class="number">1</span>+x+x^<span class="number">2</span>+<span class="keyword">...</span>)(<span class="number">1</span>+x^<span class="number">3</span>+x^<span class="number">6</span>+<span class="keyword">...</span>)(<span class="number">1</span>+x^<span class="number">5</span>+x^<span class="number">10</span>+<span class="keyword">...</span>)<span class="keyword">...</span>
+  D.实际上是个有序拆分 C(2n-<span class="number">1</span>,n)
+</code></pre></li>
+</ul>
 
       
     </div>
